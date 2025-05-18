@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import PageRoutes from "./routes/Routes";
 
@@ -6,9 +7,11 @@ import PageRoutes from "./routes/Routes";
 
 const App= () => {
   return (
-    <> 
+    <>
+    <Header/> 
     <PageRoutes/>
-    <Header/>
+    <Footer/>
+    
     </>
    
   );
