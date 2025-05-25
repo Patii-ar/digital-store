@@ -43,7 +43,8 @@ export default function Footer () {
                 </div>
                 <div className="contato basis-sm">
                     <h5 className="font-semibold text-base">Contato</h5>
-                    <p>Av. Santos Dumont, 1510 - 1 andar - Aldeota, Fortaleza - CE, 60150-161</p>
+                    <p>Av. Santos Dumont, 1510 - 1 andar - 
+                        Aldeota, <br/>Fortaleza - CE, 60150-161</p>
                     <p>(85) 3051-3411</p>
                 </div>
             </div>

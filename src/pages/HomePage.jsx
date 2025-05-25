@@ -1,5 +1,12 @@
+import Carousel from "../components/Carousel"
+import Destaque from "../components/Destaque"
+
+
 export default function HomePage () {
     return (
-        <div><h2>Olá estou aqui</h2></div>
+        <div>
+            <Carousel />
+            <Destaque />
+        </div>
     )
 }
