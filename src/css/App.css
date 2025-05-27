@@ -1,6 +1,6 @@
 @import url("Index.css");
 @import 'tailwindcss';
 
-.titulo{
-    margin-bottom: 0.8rem;
+.main{
+    padding: 0 0.8rem;
 }

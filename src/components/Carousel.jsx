@@ -9,7 +9,7 @@ const Slides = import.meta.glob('../public/home-slide/*.jpeg', { eager: true });
 export default function Carousel () {
     
     const imageElements = Object.values(Slides).map((img) => (
-  <div><img className="w-full"  src={img.default} /></div>
+  <div><img className="w-[100vw] h-[681px]"  src={img.default} /></div>
 ));
 
 
