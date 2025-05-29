@@ -12,14 +12,14 @@ const Section = ({children, title, titleAlign = "left", link}) => {
                     </h2>
                     {link && ( 
                         <a href={link.href} className="text-primary text-[18px] font-medium hover:underline">
-                        {link.text}
+                            {link.text}
                         </a>
                     )}
                 </div>
             )}
             <div>{children}</div>
         </section>
-  );
+    );
 }
 
 export default Section;

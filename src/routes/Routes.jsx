@@ -6,11 +6,10 @@ import ProductViewPage from "../pages/ProductViewPage";
 
 export default function PageRoutes () {
     return (
-            <Routes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="/produtos" element={<ProductListingPage/>}/>
-                <Route path="/produtos/id" element={<ProductViewPage/>}/>
-
-            </Routes>
+        <Routes>
+            <Route path="/" element={<HomePage/>}/>
+            <Route path="/produtos" element={<ProductListingPage/>}/>
+            <Route path="/produtos/id" element={<ProductViewPage/>}/>
+        </Routes>
     )
 }

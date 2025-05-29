@@ -10,7 +10,6 @@ const App= () => {
       <PageRoutes/>
       <Footer/>
     </div>
-   
   );
 };
 
