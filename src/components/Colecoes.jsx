@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
 
-import camisetasIcon from "../icons-colecoes/camisetas.jpg";
-import calcasIcon from "../icons-colecoes/calcas.jpg";
-import headphonesIcon from "../icons-colecoes/headphones.jpg";
-import tenisIcon from "../icons-colecoes/tenis.jpg";
+import camisetasIcon from "../public/icons-colecoes/shirt.svg";
+import calcasIcon from "../public/icons-colecoes/pants.svg";
+import headphonesIcon from "../public/icons-colecoes/headphone.svg";
+import tenisIcon from "../public/icons-colecoes/shoe.svg";
 
 
 
 const Colecoes = () => {
     const colecoes = [
-        { icone: camisetasIcon, link: "/camisetas"},
-        {nome: "calças", icone:calcasIcon, link: "/calcas"},
+        {nome: "Camisetas", icone: camisetasIcon, link: "camisetas"},
+        {nome: "Calças", icone:calcasIcon, link: "calcas"},
         /*{nome: "bonés", icone:"/icons-colecoes/calcas.svg", link: "/calcas"},*/
-        {nome: "headphones", icone:headphonesIcon, link: "/headphones"},
-        {nome: "tenis", icone:tenisIcon, link: "/tenis"},
+        {nome: "Headphones", icone:headphonesIcon, link: "headphones"},
+        {nome: "Tenis", icone:tenisIcon, link: "tenis"},
     ];
 
 
@@ -24,14 +24,14 @@ const Colecoes = () => {
                 {colecoes.map((item, index) => (
                     <Link
                         key={index}
-                        to={item.link}
-                        className="flex flex-col items-center hover:scale-110 transition-transform"
+                        to={`/produto/${item.link}`}
+                        className="flex flex-col items-center hover:text-(--principal)  hover:scale-110 transition-transform"
                     >
                         <div className="w-20 h-20 rounded-full bg-white shadow flex items-center justify-center mb-2 overflow-hidden p-1">
                             <img
                                 src={item.icone}
                                 alt={item.nome}
-                                className="w-full h-full aspect-square rounded-full object-cover object-center"
+                                className="w-[50%] h-[50%]"
                             />
                         </div>
                         <span className="text-sm">{item.nome}</span>

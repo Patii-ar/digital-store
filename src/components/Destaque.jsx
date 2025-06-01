@@ -1,8 +1,8 @@
 import "../css/Destaque.css";
 import Section from "./Section";
-import collection1 from "../public/collection-1.png";
-import collection2 from "../public/collection-2.png";
-import collection3 from "../public/collection-3.png";
+import collection1 from "../public/collections/collection-1.png";
+import collection2 from "../public/collections/collection-2.png";
+import collection3 from "../public/collections/collection-3.png";
 
 export default function Destaque () {
     return (
