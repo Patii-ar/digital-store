@@ -1,4 +1,5 @@
 import Carousel from "../components/Carousel"
+import Colecoes from "../components/colecoes";
 import Destaque from "../components/Destaque"
 const slides = import.meta.glob('../public/home-slide/*.jpeg', { eager: true });
 
@@ -27,6 +28,7 @@ export default function HomePage () {
         <div>
             <Carousel slides = {slides} settings = {settings} width = "w-[100vw]" height = "h-[681px]"/>
             <Destaque />
+            <Colecoes />
         </div>
     )
 }
