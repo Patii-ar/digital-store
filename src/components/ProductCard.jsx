@@ -3,7 +3,7 @@ import "../css/Card.css";
 export default function ProductCard({lista}) {
 
     return(
-        <div className="flex gap-9 flex-wrap justify-center">
+        <div className="flex justify-around 2xl:gap-x-20 2xl:gap-y-15 gap-8 flex-wrap">
             {lista.map((item, index) => {
 
                 const discountPrice = (item.price + (item.discount*item.price/100)).toFixed(2);
