@@ -1,0 +1,8 @@
+@import url("Index.css");
+@import 'tailwindcss';
+
+
+.discount{
+    padding: 0.1rem 0.8rem;
+    margin: 1.3rem;
+}

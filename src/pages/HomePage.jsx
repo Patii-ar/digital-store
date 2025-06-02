@@ -1,6 +1,7 @@
-import Carousel from "../components/Carousel"
+import Carousel from "../components/Carousel";
 import Colecoes from "../components/colecoes";
-import Destaque from "../components/Destaque";
+import Destaque from "../components/Destaque"
+import { ProductListing } from "../components/ProductListing";
 import SpecialOffer from "../components/SpecialOffer";
 const slides = import.meta.glob('../public/home-slide/*.jpeg', { eager: true });
 
@@ -25,12 +26,18 @@ const settings = {
     ),
 };
 
+const link = {
+  src: "/",
+  text: "Ver todos"
+}
+
 export default function HomePage () {
     return (
-        <div>
+        <div className="bg-[#F9F8FE]">
             <Carousel slides = {slides} settings = {settings} width = "w-[100vw]" height = "h-[681px]"/>
             <Destaque />
             <Colecoes />
+            <ProductListing title="Produtos em alta" link={link}/>
             <SpecialOffer/>
         </div>
     )
