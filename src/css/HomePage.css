@@ -1,0 +1,7 @@
+@import url("Index.css");
+@import 'tailwindcss';
+
+.slick-dots li.slick-active .slick-dot {
+    background-color: var(--principal);
+    opacity: 1;
+}

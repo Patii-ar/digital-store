@@ -3,6 +3,7 @@ import Colecoes from "../components/colecoes";
 import Destaque from "../components/Destaque"
 import { ProductListing } from "../components/ProductListing";
 import SpecialOffer from "../components/SpecialOffer";
+import "../css/HomePage.css";
 const slides = import.meta.glob('../public/home-slide/*.jpeg', { eager: true });
 
 
@@ -17,7 +18,7 @@ const settings = {
     cssEase: "linear",
 
     customPaging: () => (
-      <div className="w-3 h-3 bg-black opacity-60 rounded-full"></div>
+      <div className="w-3 h-3 bg-black opacity-60 rounded-full slick-dot"></div>
     ),
     appendDots: dots => (
       <div style={{ position: "absolute", bottom: "15px", width: "100%" }}>
