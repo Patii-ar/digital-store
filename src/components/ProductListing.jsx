@@ -1,73 +1,68 @@
-import ProductCard from "./ProductCard";
-import tenis1 from "../public/shoes-images/tenis1.svg";
 import { Link } from "react-router-dom";
 import "../css/ProductListing.css";
-import { FaArrowRightLong } from "react-icons/fa6";
+import tenis1 from "../public/shoes-images/tenis1.svg";
 
-const lista = [{
-    image: tenis1,
-    name: "Tênis 1",
-    price: 200,
-    discount: 30
-},
-{
-    image: tenis1,
-    name: "Tênis 2",
-    price: 150,
-    discount: 15
-},
-{
-    image: tenis1,
-    name: "Tênis 2",
-    price: 150,
-    discount: 15
-},
-{
-    image: tenis1,
-    name: "Tênis 2",
-    price: 150,
-    discount: 15
-},
-{
-    image: tenis1,
-    name: "Tênis 2",
-    price: 150,
-    discount: 15
-},
-{
-    image: tenis1,
-    name: "Tênis 2",
-    price: 150,
-    discount: 15
-},
-{
-    image: tenis1,
-    name: "Tênis 2",
-    price: 150,
-    discount: 15
-},
-{
-    image: tenis1,
-    name: "Tênis 2",
-    price: 150,
-    discount: 15
-}
-]
+const lista = [
+  { id: 1, nome: "K-Swiss V8 - Masculino", imagem: tenis1, precoOriginal: 200, precoAtual: 100, desconto: "30% OFF" },
+  { id: 2, nome: "K-Swiss V8 - Masculino", imagem: tenis1, precoOriginal: 200, precoAtual: 100, desconto: "30% OFF" },
+  { id: 3, nome: "K-Swiss V8 - Masculino", imagem: tenis1, precoOriginal: 200, precoAtual: 100 },
+  { id: 4, nome: "K-Swiss V8 - Masculino", imagem: tenis1, precoOriginal: 190, precoAtual: 150 },
+  { id: 5, nome: "K-Swiss V8 - Masculino", imagem: tenis1, precoOriginal: 200, precoAtual: 100, desconto: "30% OFF" },
+  { id: 6, nome: "K-Swiss V8 - Masculino", imagem: tenis1, precoOriginal: 200, precoAtual: 100, desconto: "30% OFF" },
+  { id: 7, nome: "K-Swiss V8 - Masculino", imagem: tenis1, precoOriginal: 200, precoAtual: 100 },
+  { id: 8, nome: "K-Swiss V8 - Masculino", imagem: tenis1, precoOriginal: 190, precoAtual: 150 },
+];
 
-export function ProductListing ({title, link}){
-    return(
-        <div className="produtos">
-            <div className="flex items-center justify-between info ">
-                {title && <h2 className="text-(--darkgray2) text-[24px] font-bold">{title}</h2>}
-                {link && 
-                    <Link to={link.src}>
-                        <h2 className="text-(--principal) flex gap-3 items-center">
-                            {link.text} <FaArrowRightLong /> 
-                        </h2>
-                    </Link>
-                }
+export function ProductListing() {
+  return (
+    <section className="product-listing">
+    
+      <div className="header flex justify-between items-center">
+        <h2 className="title text-xl font-bold text-gray-800">Produtos em alta</h2>
+        <Link
+          to="/produtos"
+          className="view-all text-pink-600 hover:underline flex items-center font-medium"
+        >
+          Ver todos <span className="ml-1">→</span>
+        </Link>
+      </div>
+
+      <div className="products-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {lista.map((produto) => (
+          <div
+            key={produto.id}
+            className="product-card rounded shadow-md hover:shadow-lg transition relative"
+          >
+            <div className="image-container">
+              {produto.desconto && (
+                <span className="badge absolute bg-lime-200 text-[10px] font-bold">
+                  {produto.desconto}
+                </span>
+              )}
+              <img
+                src={produto.imagem}
+                alt={produto.nome}
+                className="product-image object-contain mx-auto"
+              />
             </div>
-            <ProductCard lista = {lista}/>
-        </div>
-    )
+
+            <div className="card-text;
+">
+              <p className="category text-xs text-gray-400">Tênis</p>
+              <h3 className="product-name font-semibold text-sm">{produto.nome}</h3>
+
+                {produto.precoOriginal && (
+                  <span className="original-price text-gray-400 line-through text-sm">
+                    ${produto.precoOriginal}
+                  </span>
+                )}
+                <span className="current-price font-bold text-sm">
+                  ${produto.precoAtual}
+                </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
