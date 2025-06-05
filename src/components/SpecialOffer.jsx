@@ -28,14 +28,14 @@ export default function SpecialOffer() {
 
       {/* Texto e botão */}
       <div className="flex-1 text-left max-w-lg special-offer-text">
-        <p className="special-offer-title text-pink-600 font-semibold text-sm uppercase tracking-wide">
+        <p className="special-offer-title text-pink-600 font-semibold text-sm tracking-wide">
           Oferta especial
         </p>
 
-        <p className="special-offer-heading text-3xl font-bold leading-snug">
+        <p className="special-offer-heading text-5xl font-bold leading-snug"style={{color: '#474747'}}>
           Air Jordan edição de colecionador
         </p>
-        <p className="special-offer-description text-gray-600">
+        <p className="special-offer-description text-base text-gray-600">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
         </p>
         <button
