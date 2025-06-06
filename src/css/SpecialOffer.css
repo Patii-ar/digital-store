@@ -1,7 +1,17 @@
 .special-offer {
-    margin-top: 4rem;
-    margin-left: 6rem;
+  margin-top: 4rem;
+}
 
+@media (max-width: 425px){
+  .special-offer{
+    margin-left: 1.3rem;
+  }
+}
+
+@media (min-width: 1024px){
+  .special-offer{
+    margin-left: 6rem;
+  }
 }
 
 .special-offer-text {

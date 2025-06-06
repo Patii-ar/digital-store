@@ -9,51 +9,13 @@
 
 .header {
   margin-bottom: 1.5rem;  
-  padding-left: 5rem;     
-  padding-right: 5rem;    
-}
-
-.products-grid {
-  gap: 1.5rem;            
-  padding-left: 5rem;     
-  padding-right: 5rem;   
+  padding-left: 1rem;     
+  padding-right: 1rem;    
 }
 
 @media (min-width: 1024px) {
-  .products-grid {
-    gap: 2rem; 
+  .header  {
+    padding-left: 5rem;     
+    padding-right: 5rem;   
   }
 }
-
-.image-container {
-  position: relative;     
-  padding-bottom: 0.5rem; 
-}
-
-.badge {
-  position: absolute;
-  top: 0.5rem;            
-  left: 0.5rem;           
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem; 
-}
-
-
-.product-image {
-  width: 292px;           
-  height: 321px;          
-  display: block;
-  margin-left: auto;
-  margin-right: auto;     
-}
-
-
-.card-text {
-  padding-left: 2rem;    
-  padding-right: 1rem;    
-  padding-bottom: 1rem;
-  
-}
-
-
-

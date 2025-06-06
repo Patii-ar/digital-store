@@ -6,7 +6,7 @@ export default function SpecialOffer() {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-white py-10 px-5 md:px-20 rounded-lg shadow-md flex items-center gap-20">
+    <section className="bg-white rounded-lg shadow-md flex items-center sm:justify-center gap-1 md:gap-20 flex-wrap">
       
       {/* Imagem com fundo circular */}
       <div className= "special-offer relative  w-[466px] h-[466px] md:w-[466px] md:h-[466px]">
