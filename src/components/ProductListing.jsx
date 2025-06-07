@@ -1,12 +1,11 @@
 import ProductCard from "./ProductCard";
-import tenis1 from "../public/shoes-images/tenis1.svg";
 import { Link } from "react-router-dom";
 import "../css/ProductListing.css";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 export const lista = [
 {
-    image: "/product-list/bone7.jpg",
+    image: "/src/public/product-images/bone7.jpg",
     name: "Tênis 1",
     price: 200,
     discount: 30,
@@ -14,7 +13,7 @@ export const lista = [
 },
 {
     id:2,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -22,7 +21,7 @@ export const lista = [
 },
 {
     id:3,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -30,7 +29,7 @@ export const lista = [
 },
 {
     id:4,
-    image:tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -38,14 +37,14 @@ export const lista = [
 },
 {
     id:5,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     tamanhos: [38, 39, 40, 41, 42]
 },
 {
     id:6,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -53,7 +52,7 @@ export const lista = [
 },
 {
     id:7,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -61,7 +60,7 @@ export const lista = [
 },
 {
     id:8,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -69,7 +68,7 @@ export const lista = [
 },
 {
     id:9,
-    image: "/product-list/camiseta6.jpg",
+    image: "/src/public/product-images/camiseta6.jpg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -78,7 +77,7 @@ export const lista = [
 },
 {
     id:10,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -87,7 +86,7 @@ export const lista = [
 },
 {
     id:11,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -96,7 +95,7 @@ export const lista = [
 },
 {
     id:12,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -105,7 +104,7 @@ export const lista = [
 },
 {
     id:13,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -114,7 +113,7 @@ export const lista = [
 },
 {
     id:14,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
@@ -123,7 +122,7 @@ export const lista = [
 },
 {
     id:15,
-    image: tenis1,
+    image: "/src/public/product-images/tenis1.svg",
     name: "Tênis 2",
     price: 150,
     discount: 15,
