@@ -38,7 +38,7 @@ export default function HomePage () {
             <Carousel slides = {slides} settings = {settings} width = "w-[100vw]" height = "h-[681px]"/>
             <Destaque />
             <Colecoes />
-            <ProductListing title="Produtos em alta" link={link}/>
+            <ProductListing title="Produtos em alta" link={link} limit={8} />
             <SpecialOffer/>
         </div>
     )
