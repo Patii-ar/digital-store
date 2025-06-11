@@ -1,0 +1,31 @@
+.sidebar-container {
+  width: 100%;
+  max-width: 16rem; /* 256px */
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  font-size: 0.875rem; /* Tailwind's text-sm */
+}
+
+.sidebar-section {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-title {
+  font-size: 1.125rem; /* Tailwind's text-lg */
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.sidebar-subtitle {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}

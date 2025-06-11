@@ -5,6 +5,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 export const lista = [
 {
+    id:1,
     image: "/src/public/product-images/bone7.jpg",
     name: "Tênis 1",
     price: 200,
@@ -137,10 +138,10 @@ export function ProductListing ({title, link, limit}){
     return(
         <div className="product-listing">
             <div className="header flex items-center justify-between info ">
-                {title && <h2 className="text-(--darkgray2) text-[24px] font-bold">{title}</h2>}
+                {title && <h2 className="text-[var(--darkgray2)] text-[24px] font-bold">{title}</h2>}
                 {link && 
                     <Link to={link.src}>
-                        <h2 className="text-(--principal) flex gap-3 items-center">
+                        <h2 className="text-[var(--principal)] flex gap-3 items-center">
                             {link.text} <FaArrowRightLong /> 
                         </h2>
                     </Link>
