@@ -2,6 +2,9 @@ import "../css/Card.css";
 
 export default function ProductCard({lista}) {
 
+    if (!Array.isArray(lista)|| lista.length === 0) {
+        return <p>Nenhum produto disponível.</p>;
+    }
     return(
         <div className="products-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {lista.map((item, index) => {
