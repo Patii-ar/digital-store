@@ -1,0 +1,15 @@
+/* spacing.css */
+
+/* Padding */
+.spacing-px-md { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+/* Margin */
+.spacing-mt-sm { margin-top: 0.5rem; }
+.spacing-mt-md { margin-top: 1rem; }
+.spacing-mt-lg { margin-top: 2rem; }
+
+.spacing-mb-sm { margin-bottom: 0.5rem; }
+.spacing-mb-md { margin-bottom: 1rem; }
+
+.spacing-my-md { margin-top: 1rem; margin-bottom: 1rem; }
+.spacing-my-lg { margin-top: 2rem; margin-bottom: 2rem; }

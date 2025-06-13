@@ -2,6 +2,9 @@ import "../css/Card.css";
 
 export default function ProductCard({lista}) {
 
+    if (!Array.isArray(lista)|| lista.length === 0) {
+        return <p>Nenhum produto disponível.</p>;
+    }
     return(
         <div className="products-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {lista.map((item, index) => {
@@ -12,7 +15,7 @@ export default function ProductCard({lista}) {
                     <div key={index} className="relative h-fit">
                         {item.discount && <h5 className="discount absolute top-0 left-0 z-40 bg-[#E7FF86] rounded-xl text-[14px] text-(--darkgray2)">{item.discount}% off</h5>}
                         <img src={item.image} alt="" className="h-[292px] w-[321px] object-cover z-10 bg-(--white)" />
-                        <h5 className="product-name font-semibold text-sm">{item.categoty}</h5>
+                        <h5 className="product-name font-semibold text-sm">{item.category}</h5>
                         <h3 className="text-[24px] text-(--darkgray)">{item.name}</h3>
                         <div className="flex flex-col md:flex-row gap-[0.2rem] md:gap-[0.6rem]">
                             <h4 className={`text-[24px] ${item.discount ? 'text-(--lightgray) line-through' : 'text-(--darkgray)'}`}>$ {item.price.toFixed(2)}</h4>
