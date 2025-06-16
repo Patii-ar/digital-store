@@ -1,7 +1,8 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
-import { lista } from '../components/ProductListing'; // <- Importa os produtos reais
+import { lista } from '../components/ProductListing';
+
 import '../css/spacing.css';
 
 export default function ProductViewPage() {

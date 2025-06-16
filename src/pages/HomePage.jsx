@@ -32,13 +32,13 @@ const link = {
   text: "Ver todos"
 }
 
-export default function HomePage () {
+export default function HomePage ({onAddToCart}) {
     return (
         <div className="bg-[#F9F8FE]">
             <Carousel slides = {slides} settings = {settings} width = "w-[100vw]" height = "h-[681px]"/>
             <Destaque />
             <Colecoes />
-            <ProductListing title="Produtos em alta" link={link} limit={8}/>
+            <ProductListing title="Produtos em alta" link={link} limit={8} onAddToCart={onAddToCart}/>
             <SpecialOffer/>
         </div>
     )

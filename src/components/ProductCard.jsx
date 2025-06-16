@@ -1,6 +1,6 @@
 import "../css/Card.css";
 
-export default function ProductCard({lista}) {
+export default function ProductCard({lista, onAddToCart}) {
 
     if (!Array.isArray(lista)|| lista.length === 0) {
         return <p>Nenhum produto disponível.</p>;
@@ -9,7 +9,14 @@ export default function ProductCard({lista}) {
         <div className="products-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {lista.map((item, index) => {
 
-                const discountPrice = (item.price + (item.discount*item.price/100)).toFixed(2);
+                const discountPrice = (item.price - (item.discount * item.price / 100)).toFixed(2);
+
+                const productToAdd = {
+                    name: item.name,
+                    price: item.discount ? Number(discountPrice) : item.price,
+                    oldPrice: item.discount ? item.price : null,
+                    img: item.image,
+                };
                 
                 return(
                     <div key={index} className="relative h-fit">
@@ -21,8 +28,15 @@ export default function ProductCard({lista}) {
                             <h4 className={`text-[24px] ${item.discount ? 'text-(--lightgray) line-through' : 'text-(--darkgray)'}`}>$ {item.price.toFixed(2)}</h4>
                             {item.discount && <h4 className="text-[24px] text-(--darkgray)">$ {discountPrice}</h4>}
                         </div>
+                        <button
+                            className="mt-3 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition"
+                            onClick={() => onAddToCart(productToAdd)}
+                        >
+                            Adicionar ao carrinho
+                        </button>
                     </div>
-            )})}
+                );
+            })}
         </div>
     );
 }
