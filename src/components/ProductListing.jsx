@@ -132,7 +132,7 @@ export const lista = [
 }
 ]
 
-export function ProductListing ({title, link, limit}){
+export function ProductListing ({title, link, limit, onAddToCart}){
     const produtosexibidos = limit ? lista.slice(0, limit) : lista;
 
     return(
@@ -147,7 +147,7 @@ export function ProductListing ({title, link, limit}){
                     </Link>
                 }
             </div>
-            <ProductCard lista = {produtosexibidos}/>
+            <ProductCard lista = {produtosexibidos} onAddToCart={onAddToCart}/>
         </div>
     )
 }

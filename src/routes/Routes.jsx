@@ -4,12 +4,12 @@ import ProductListingPage from "../pages/ProductListingPage";
 import ProductViewPage from "../pages/ProductViewPage";
 
 
-export default function PageRoutes () {
+export default function PageRoutes ({onAddToCart}) {
     return (
         <Routes>
-            <Route path="/" element={<HomePage/>}/>
-            <Route path="/produtos" element={<ProductListingPage/>}/>
-            <Route path="/produtos/id" element={<ProductViewPage/>}/>
+            <Route path="/" element={<HomePage onAddToCart={onAddToCart}/>}/>
+            <Route path="/produtos" element={<ProductListingPage onAddToCart={onAddToCart} />}/>
+            <Route path="/produtos/id" element={<ProductViewPage onAddToCart={onAddToCart} />}/>
         </Routes>
     )
 }
