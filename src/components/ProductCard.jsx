@@ -30,7 +30,7 @@ export default function ProductCard({lista, onAddToCart}) {
                         </div>
                         <button
                             className="mt-3 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition"
-                            onClick={() => onAddToCart(productToAdd)}
+                            onClick={() => onAddToCart?.(productToAdd)}
                         >
                             Adicionar ao carrinho
                         </button>
