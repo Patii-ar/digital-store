@@ -9,7 +9,7 @@ export default function PageRoutes ({onAddToCart}) {
         <Routes>
             <Route path="/" element={<HomePage onAddToCart={onAddToCart}/>}/>
             <Route path="/produtos" element={<ProductListingPage onAddToCart={onAddToCart} />}/>
-            <Route path="/produtos/id" element={<ProductViewPage onAddToCart={onAddToCart} />}/>
+            <Route path="/produtos/:id" element={<ProductViewPage onAddToCart={onAddToCart} />}/>
         </Routes>
     )
 }

@@ -3,7 +3,6 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import PageRoutes from "./routes/Routes";
 import "./css/App.css";
-import { lista } from "./components/ProductListing";
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);

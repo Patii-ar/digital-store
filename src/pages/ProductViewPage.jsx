@@ -1,5 +1,3 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import { lista } from '../components/ProductListing';
 
@@ -8,7 +6,6 @@ import '../css/spacing.css';
 export default function ProductViewPage() {
     return (
         <div className='bg-gray-50 text-gray-900 font-sans'>
-            <Header />
             <main className='max-w-7x1 mx-auto spacing-px-md spacing-my-lg'>
                 <div className='flex flex-col md:flex-row gap-8 spacing-my-md'>
                     <div className='flex-1'>
@@ -82,8 +79,6 @@ export default function ProductViewPage() {
                     <ProductCard lista={lista.slice(0, 4)} />
                 </section>
             </main>
-
-            <Footer />
         </div>
     );
 }

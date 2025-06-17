@@ -1,7 +1,5 @@
 import "../css/CartModal.css";
 
-
-
 export default function CartModal({ isOpen, onClose, cartItems }) {
     if (!isOpen) return null;
 
