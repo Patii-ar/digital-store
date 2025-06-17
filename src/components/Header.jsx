@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 import logo from "../assets/logo.svg";
 import { CiSearch } from "react-icons/ci";
-import minicart from "../assets/mini-cart.svg";
+import { FaShoppingCart } from "react-icons/fa";
 
-import CartModal from "./CartModal";
+
 import "../css/Header.css";
 
 
 
-export default function Header ({cartItems, isModalOpen, setIsModalOpen}) {
+export default function Header ({onCartClick, cartQuantity}) {
   
     return (
     
@@ -28,9 +28,16 @@ export default function Header ({cartItems, isModalOpen, setIsModalOpen}) {
                     <Link to="/"><button className="botatoentrar hover:bg-[#dd257e] transition duration-500 rounded-lg bg-(--principal) font-bold text-white cursor-pointer">Entrar</button></Link>
                 </div>
                 
-                 <button onClick={() => setIsModalOpen(true)} className="relative">
-                    <img src={minicart} alt="Carrinho" className="carrinho"/>
-                </button>
+                <div className="cart-icon-wrapper">
+                    <button onClick={onCartClick}>
+                        <FaShoppingCart className="text-xl text-pink-600 hover:text-pink-700 cursor-pointer" />
+                            {cartQuantity > 0 && (
+                                <span className="cart-quantity-badge">
+                                    {cartQuantity}
+                                </span>
+                            )}
+                        </button>
+                    </div>
             </section>
             <nav>
                 <ul className="lista flex text-(--darkgray2)">
@@ -40,11 +47,7 @@ export default function Header ({cartItems, isModalOpen, setIsModalOpen}) {
                     <li className="font-semibold hover:underline hover:underline-offset-7 hover:text-(--principal)"><Link to="/">Meus Pedidos</Link></li>
                 </ul>   
             </nav>
-            <CartModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            cartItems={cartItems}
-            />
+            
         </header>
         
     );

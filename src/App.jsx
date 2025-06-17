@@ -4,27 +4,35 @@ import Header from "./components/Header";
 import PageRoutes from "./routes/Routes";
 import "./css/App.css";
 import { lista } from "./components/ProductListing";
+import CartModal from "./components/CartModal";
 
-const App = () => {
+export default function App()  {
   const [cartItems, setCartItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleAddToCart = (product) => {
-    setCartItems((prev) => [...prev, product]);
-    setIsModalOpen(true);
+  function handleAddToCart (product) {
+    const formattedProduct = {
+    ...product,
+    image: product.img || product.image,
   };
+  setCartItems((prev) => [...prev, formattedProduct]);
+}
 
+
+  function handleClearCart() {
+    setCartItems([])
+  }
   return (
     <div className="main">
-      <Header
-        cartItems={cartItems}
-        setIsModalOpen={setIsModalOpen}
-        isModalOpen={isModalOpen}
-      />
+      <Header onCartClick={() => setIsModalOpen(true)} cartQuantity={cartItems.length} />
       <PageRoutes onAddToCart={handleAddToCart} />
+      <CartModal isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      cartItems={cartItems}
+      onClearCart={handleClearCart}
+      />
       <Footer />
     </div>
   );
 };
 
-export default App;
