@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "../css/CartModal.css";
 
 export default function CartModal({ isOpen, onClose, cartItems, onClearCart }) {
+  const navigate = useNavigate();
+  
   if (!isOpen) return null;
 
   const total = cartItems.reduce((acc, item) => acc + item.price, 0).toFixed(2);
@@ -50,7 +53,13 @@ export default function CartModal({ isOpen, onClose, cartItems, onClearCart }) {
           <button onClick={onClearCart} className="text-gray-500 underline hover:text-pink-600">
             Esvaziar
           </button>
-          <button className="bg-pink-600 text-white rounded hover:bg-pink-700 transition cart-button">
+          <button
+            onClick={() => {
+              onClose();
+              navigate("/carrinho");
+            }}
+            className="bg-pink-600 text-white rounded hover:bg-pink-700 transition cart-button"
+          >
             Ver Carrinho
           </button>
         </div>

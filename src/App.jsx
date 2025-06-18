@@ -5,6 +5,7 @@ import PageRoutes from "./routes/Routes";
 import "./css/App.css";
 import { lista } from "./components/ProductListing";
 import CartModal from "./components/CartModal";
+import CartPage from "./components/CartPage";
 
 export default function App()  {
   const [cartItems, setCartItems] = useState([]);
@@ -25,7 +26,7 @@ export default function App()  {
   return (
     <div className="main">
       <Header onCartClick={() => setIsModalOpen(true)} cartQuantity={cartItems.length} />
-      <PageRoutes onAddToCart={handleAddToCart} />
+      <PageRoutes onAddToCart={handleAddToCart} cartItems={cartItems} />
       <CartModal isOpen={isModalOpen}
       onClose={() => setIsModalOpen(false)}
       cartItems={cartItems}
