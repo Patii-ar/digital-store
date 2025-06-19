@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { TbShoppingCartPlus } from "react-icons/tb";
 import "../css/Card.css";
 
 export default function ProductCard({lista, onAddToCart}) {
@@ -30,13 +31,13 @@ export default function ProductCard({lista, onAddToCart}) {
                                 <h4 className={`text-[24px] ${item.discount ? 'text-(--lightgray) line-through' : 'text-(--darkgray)'}`}>$ {item.price.toFixed(2)}</h4>
                                 {item.discount && <h4 className="text-[24px] text-(--darkgray)">$ {discountPrice}</h4>}
                             </div>
+                         </Link>
                             <button
-                                className="mt-3 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition"
+                                className="mt-3 bg-(--lightgray) text-white px-4 py-2 hover:bg-pink-700 transition"
                                 onClick={() => onAddToCart(productToAdd)}
                             >
-                                Adicionar ao carrinho
+                                <TbShoppingCartPlus className="text-2xl"/>
                             </button>
-                        </Link>
                     </div>
                 );
             })}
