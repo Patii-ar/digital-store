@@ -37,3 +37,26 @@
         padding-right:1.5rem ;
     }
 }
+
+.cart-icon-wrapper {
+  position: relative;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.cart-quantity-badge {
+  position: absolute;
+  top: 0px;
+  right: -10px;
+  background-color: #db2777;
+  color: white;
+  font-size: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

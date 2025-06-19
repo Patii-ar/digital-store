@@ -1,9 +1,14 @@
+import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { lista } from '../components/ProductListing';
 
 import '../css/spacing.css';
 
 export default function ProductViewPage() {
+
+    const { id } = useParams();
+    const product = lista.find(prod => prod.id == id);
+
     return (
         <div className='bg-gray-50 text-gray-900 font-sans'>
             <main className='max-w-7x1 mx-auto spacing-px-md spacing-my-lg'>
@@ -29,7 +34,7 @@ export default function ProductViewPage() {
                     {/* Detalhes do produto */}
                     <div className='flex-1'>
                         <h1 className='text-2x1 font-bold leading-snug'>
-                            Tênis Nike Revolution 6 Next Nature Masculino
+                            {product.name}
                         </h1>
                         <p className='text-sm text-gray-500 spacing-mt-sm'>Cód: 123</p>
                         <div className='flex items-center gap-2 spacing-mt-sm'>
