@@ -4,7 +4,7 @@ import Destaque from "../components/Destaque"
 import { ProductListing } from "../components/ProductListing";
 import SpecialOffer from "../components/SpecialOffer";
 import "../css/HomePage.css";
-const slides = import.meta.glob('../public/home-slide/*.jpeg', { eager: true });
+const slides = import.meta.glob('../public/home-slide/*.jpg', { eager: true });
 
 
 const settings = {
@@ -35,7 +35,7 @@ const link = {
 export default function HomePage ({onAddToCart}) {
     return (
         <div className="bg-[#F9F8FE]">
-            <Carousel slides = {slides} settings = {settings} width = "w-[100vw]" height = "h-[681px]"/>
+            <Carousel slides = {slides} settings = {settings} width = "w-full" height = "aspect-[16/9]" className=""/>
             <Destaque />
             <Colecoes />
             <ProductListing title="Produtos em alta" link={link} limit={8} onAddToCart={onAddToCart}/>

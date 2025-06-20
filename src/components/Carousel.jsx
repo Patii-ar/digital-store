@@ -27,14 +27,20 @@ export default function Carousel ({slides, settings, height, width}) {
 
   
 
-  const imageElements = Object.values(slides).map((img) => (
-    <div>
-      <img className={`${height} ${width}`} src={img.default} />
+  const imageElements = Object.values(slides).map((img, index) => (
+    <div key={index} className="relative w-full aspect-[3/1] overflow-hidden">
+      <img
+        src={img.default}
+        alt={`Slide ${index}`}
+        loading="lazy"
+        className="w-full h-full object-cover" 
+        decoding="async"
+      />
     </div>
   ));
 
   return(
-    <div className="w-full carousel">
+    <div className="w-full carousel overflow-hidden">
       <Slider ref={sliderRef} {...settings}>
         {imageElements}
       </Slider>
