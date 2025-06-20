@@ -11,7 +11,7 @@ export default function SidebarFilter({
   selectedCategories,
   setSelectedCategories
 }) {
-  const brands = ["Sony", "Levis", "Nike", "Adidas", "New Era", "JBL", "Hering"];
+  const brands = ["SONY", "Hering", "PUMA", "NIKE", "ADIDAS", "Hosek", "Cloth", "DOPE", "Ovrnight", "New Era", "JBL", "APPLE", "Audio-Technica", "Disorder"];
   const categories = ["pants", "sneaker", "tshirt", "cap", "headphone"];
 
   const handleToggle = (value, selected, setFn) => {

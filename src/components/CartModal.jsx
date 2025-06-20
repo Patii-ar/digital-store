@@ -6,7 +6,13 @@ export default function CartModal({ isOpen, onClose, cartItems, onClearCart }) {
   
   if (!isOpen) return null;
 
-  const total = cartItems.reduce((acc, item) => acc + item.price, 0).toFixed(2);
+  const total = cartItems.reduce((acc, item) => {
+  const price = typeof item.price === "number" ? item.price : 0;
+  const quantity = typeof item.quantity === "number" ? item.quantity : 1;
+  return acc + price * quantity;
+}, 0).toFixed(2);
+
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <>
@@ -14,6 +20,7 @@ export default function CartModal({ isOpen, onClose, cartItems, onClearCart }) {
 
       <div className="cart-modal">
         <h3 className="text-lg font-bold cart-title">Meu Carrinho</h3>
+        <h4 className="text-sm text-gray-600 mb-2">{totalItems} item(s) no carrinho</h4>
 
         <div className="max-h-72 overflow-y-auto cart-items">
           {cartItems.length === 0 ? (
@@ -30,14 +37,15 @@ export default function CartModal({ isOpen, onClose, cartItems, onClearCart }) {
                   <p className="text-sm font-medium text-gray-800">{item.nome}</p>
                   <div className="flex gap-2 items-center">
                     <p className="text-sm font-semibold text-gray-800">
-                      R$ {item.price.toFixed(2)}
+                       R$ {(item.price * item.quantity).toFixed(2)}
                     </p>
                     {item.oldPrice && (
                       <p className="text-xs text-gray-400 line-through mt-[2px]">
-                        R$ {item.oldPrice.toFixed(2)}
+                        R$ {(item.price * item.quantity).toFixed(2)}
                       </p>
                     )}
                   </div>
+                  <p className="text-xs text-gray-500">Quantidade: {item.quantity}</p>
                 </div>
               </div>
             ))
