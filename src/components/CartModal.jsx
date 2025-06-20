@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import "../css/CartModal.css";
 
-export default function CartModal({ isOpen, onClose, cartItems, onClearCart }) {
+
+
+export default function CartModal({ isOpen, onClose, cartItems }) {
+
   const navigate = useNavigate();
-  
+
   if (!isOpen) return null;
 
   const total = cartItems.reduce((acc, item) => {

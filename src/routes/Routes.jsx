@@ -11,7 +11,7 @@ export default function PageRoutes ({onAddToCart, cartItems, onRemove, onUpdateC
         <Routes>
             <Route path="/" element={<HomePage onAddToCart={onAddToCart}/>}/>
             <Route path="/produtos" element={<ProductListingPage onAddToCart={onAddToCart} />}/>
-            <Route path="/produtos/id" element={<ProductViewPage onAddToCart={onAddToCart} />}/>
+            <Route path="/produtos/:id" element={<ProductViewPage onAddToCart={onAddToCart} />}/>
             <Route path="/carrinho" element={<CartPage cartItems={cartItems} onRemove={onRemove} onUpdateCart={onUpdateCart} />} />
 
         </Routes>
