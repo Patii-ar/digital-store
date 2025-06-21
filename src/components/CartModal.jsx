@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import "../css/CartModal.css";
+import { FiTrash } from "react-icons/fi";
 
 
 
-export default function CartModal({ isOpen, onClose, cartItems }) {
+export default function CartModal({ isOpen, onClose, cartItems, onClearCart, onChangeQuantity, onRemove }) {
 
   const navigate = useNavigate();
 
   if (!isOpen) return null;
 
   const total = cartItems.reduce((acc, item) => {
-  const price = typeof item.price === "number" ? item.price : 0;
+  const price = typeof item.price === "number" ? item.price : 1;
   const quantity = typeof item.quantity === "number" ? item.quantity : 1;
   return acc + price * quantity;
 }, 0).toFixed(2);
@@ -29,27 +30,51 @@ export default function CartModal({ isOpen, onClose, cartItems }) {
           {cartItems.length === 0 ? (
             <p className="text-sm text-gray-500">Seu carrinho está vazio.</p>
           ) : (
+
             cartItems.map((item, index) => (
               <div key={index} className="flex items-center gap-4 border-b cart-item">
                 <img
                   src={item.image}
-                  alt={item.nome}
+                  alt={item.name}
                   className="w-16 h-16 object-contain rounded bg-gray-100"
                 />
                 <div>
-                  <p className="text-sm font-medium text-gray-800">{item.nome}</p>
-                  <div className="flex gap-2 items-center">
-                    <p className="text-sm font-semibold text-gray-800">
-                       R$ {(item.price * item.quantity).toFixed(2)}
-                    </p>
-                    {item.oldPrice && (
-                      <p className="text-xs text-gray-400 line-through mt-[2px]">
-                        R$ {(item.price * item.quantity).toFixed(2)}
-                      </p>
-                    )}
+                  <p className="text-sm font-medium text-gray-800">{item.name}</p>
+                  <p className="text-xs text-gray-500">
+                    Cor: <strong>{item.color}</strong> | Tamanho: <strong>{item.size}</strong>
+                  </p>
+                  <div className="flex gap-2 items-center mt-1">
+                    <button
+                      onClick={() => onChangeQuantity(index, item.quantity - 1)}
+                      disabled={item.quantity <= 1}
+                      className="px-2 rounded hover:bg-gray-200"
+                    >
+                      -
+                    </button>
+                    <span className="mx-2">{item.quantity}</span>
+                    <button
+                      onClick={() => onChangeQuantity(index, item.quantity + 1)}
+                      className="px-2 rounded hover:bg-gray-200"
+                    >
+                      +
+                    </button>
                   </div>
-                  <p className="text-xs text-gray-500">Quantidade: {item.quantity}</p>
+                  <p className="text-sm font-semibold mt-1">
+                    R$ {(item.price * item.quantity).toFixed(2)}
+                  </p>
+                  {item.oldPrice && (
+                    <p className="text-xs text-gray-400 line-through mt-[2px]">
+                      R$ {(item.oldPrice * item.quantity).toFixed(2)}
+                    </p>
+                  )}
                 </div>
+                <button
+                  onClick={() => onRemove(index)}
+                  className="relative top-7 right-0 text-gray-400 hover:text-pink-600 transition"
+                  aria-label="Remover item"
+                >
+                  <FiTrash className="text-lg" />
+                </button>
               </div>
             ))
           )}

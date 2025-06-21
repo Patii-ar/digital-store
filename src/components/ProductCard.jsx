@@ -14,29 +14,45 @@ export default function ProductCard({lista, onAddToCart}) {
                 const discountPrice = (item.price - (item.discount * item.price / 100)).toFixed(2);
 
                 const productToAdd = {
+                    id: item.id,
+                    code:item.code,
+                    color: item.color?.[0],
+                    size: item.size?.[0],
+                    quantity: 1,
                     name: item.name,
                     price: item.discount ? Number(discountPrice) : item.price,
                     oldPrice: item.discount ? item.price : null,
-                    img: item.image,
+                    image: item.image,
                 };
                 
                 return(
                     <div key={index} className="relative h-fit">
                         <Link to={`/produtos/${item.id}`}>
-                            {item.discount && <h5 className="discount absolute top-0 left-0 z-40 bg-[#E7FF86] rounded-xl text-[14px] text-(--darkgray2)">{item.discount}% off</h5>}
-                            <img src={item.image} alt="" className="h-[292px] w-[321px] object-cover z-10 bg-(--white)" loading="lazy" decoding="async" />
+                            {item.discount && 
+                            <h5 className="discount absolute top-0 left-0 z-40 bg-[#E7FF86] rounded-xl text-[14px] text-(--darkgray2)">{item.discount}% off</h5>}
+                            
+                            <img 
+                                src={item.image} 
+                                alt="{item.name}" 
+                                className="h-[292px] w-[321px] object-cover z-10 bg-(--white)" 
+                                loading="lazy" 
+                                decoding="async" 
+                            />
                             <h5 className="product-name font-semibold text-sm">{item.category}</h5>
                             <h3 className="text-[24px] text-(--darkgray)">{item.name}</h3>
                             <div className="flex flex-col md:flex-row gap-[0.2rem] md:gap-[0.6rem]">
-                                <h4 className={`text-[24px] ${item.discount ? 'text-(--lightgray) line-through' : 'text-(--darkgray)'}`}>$ {item.price.toFixed(2)}</h4>
-                                {item.discount && <h4 className="text-[24px] text-(--darkgray)">$ {discountPrice}</h4>}
+                                <h4 
+                                    className={`text-[24px] ${item.discount ? 'text-(--lightgray) line-through' : 'text-(--darkgray)'}`}>$ {item.price.toFixed(2)}</h4>
+                                    {item.discount && <h4 className="text-[24px] text-(--darkgray)">$ {discountPrice}
+                                </h4>}
                             </div>
                         </Link>    
                         <button
-                            className="mt-3 bg-(--lightgray) text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition"
-                            onClick={() => onAddToCart?.(productToAdd)}
+                            className="mt-3 flex items-center justify-center gap-2 hover:bg-pink-700 text-pink-600 px-4 py-2 rounded-lg transition"
+                            onClick={() => onAddToCart?.(item, item.color?.[0], item.size?.[0])}
                         >
                             <TbShoppingCartPlus className="text-2xl"/>
+                            
                         </button>
                     </div>
                 );
