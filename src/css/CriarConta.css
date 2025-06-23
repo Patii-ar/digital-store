@@ -1,11 +1,46 @@
+@import 'tailwindcss';
+
+.input {
+  @apply w-full bg-gray-100 border border-gray-300 px-4 py-2 rounded-md text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#cf2284];
+}
+
+.error {
+  @apply text-red-500 text-xs mt-1;
+}
+
 .criarconta-container {
-  padding: 24px;
+  padding: 5rem;
+  padding-bottom: 5rem;
 }
 
-input {
-  padding: 8px 12px;
+.box-container {
+  margin-top: 2rem;
+  margin-bottom: 5rem;
 }
 
-section {
-  margin-bottom: 24px;
+.text-criar-conta {
+  padding-left: 1rem;
+  
+}
+
+.text-inf{
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.box-pessoal {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-bottom: 2rem;
+}
+
+.box-adress {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.checkbox {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }

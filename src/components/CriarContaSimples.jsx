@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import tenisJordan from "../assets/tenis-air-jordan.svg";
-import "../css/CriarConta.css"; 
+import { useNavigate, Link } from "react-router-dom";
+import tenisJordan from "../assets/jordanblue.png";
+import gmail from "../assets/logogmail.svg";
+import facebook from "../assets/facebook.svg";
+import "../css/CriarContaSimples.css";
 
 export default function CriarContaSimples() {
   const [email, setEmail] = useState("");
@@ -13,51 +15,54 @@ export default function CriarContaSimples() {
       alert("Insira um email válido.");
       return;
     }
-
-    // Simulação de salvamento temporário
     localStorage.setItem("emailTemp", email);
-    navigate("/criar-conta"); 
+    navigate("/criar-conta");
   }
 
   return (
-    <main className="criarconta-container flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-[#d3ccfa] to-[#f1ebff] px-4">
-      <div className="max-w-6xl w-full flex flex-col md:flex-row items-center justify-center gap-10">
+    <main className="criarconta-container flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-[#e8e3ff] to-[#f4f0ff]">
+      <div className="criarconta-wrapper max-w-6xl w-full flex flex-col md:flex-row items-center justify-center">
+        
         {/* Formulário */}
-        <section className="bg-white rounded-lg shadow-md p-8 w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-2">Crie sua conta</h2>
-          <p className="text-sm text-gray-600 mb-6">
-            Já possui uma conta?{" "}
-            <span className="text-[#cf2284] underline cursor-pointer">Entre aqui</span>.
-          </p>
-          <form onSubmit={handleSubmit}>
-            <label className="block text-sm font-medium mb-1" htmlFor="email">Email *</label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-300 px-3 py-2 rounded mb-6 text-sm"
-              placeholder="Insira seu email"
-              required
-            />
-            <button
-              type="submit"
-              className="w-full bg-[#cf2284] text-white py-2 rounded-md hover:bg-[#b61e73] transition"
-            >
-              Criar Conta
-            </button>
-          </form>
+        <section className="bg-white rounded-2xl shadow-md w-full max-w-md section-form">
+            <h2 className="text-3xl font-semibold mb-3 text-gray-900 text-criarconta">Crie sua conta</h2>
+            <p className="text-sm text-gray-600 text-possuiconta">
+                Já possui uma conta?{" "}
+                <Link to="/login" className="text-[#cf2284] underline">Entre aqui</Link>.
+            </p>
 
-          <p className="text-center mt-6 text-sm text-gray-600">Ou faça login com</p>
-          <div className="flex justify-center gap-4 mt-2">
-            <img src="/icons/google.svg" alt="Google" className="w-6 h-6" />
-            <img src="/icons/facebook.svg" alt="Facebook" className="w-6 h-6" />
-          </div>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 text-email">
+                    Email *
+                </label>
+                <input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Insira seu email"
+                    required
+                    className="w-full bg-gray-100 border border-transparent rounded-md mb-6 text-sm focus:outline-none focus:ring-2 focus:ring-[#cf2284] box-email"
+                />
+                <button
+                    type="submit"
+                    className="w-full bg-[#cf2284] text-white rounded-md font-medium hover:bg-[#b61e73] hover:cursor-pointer transition duration-200 box-email-container"
+                >
+                    Criar Conta
+                </button>
+            </form>
+
+            <p className="text-center text-sm text-gray-600 text-login">Ou faça login com</p>
+            <div className="flex justify-center items-center gap-4 mt-4">
+                <img src={gmail} alt="Google" className="w-6 h-6" />
+                <img src={facebook} alt="Facebook" className="w-6 h-6 " />
+            </div>
         </section>
 
+
         {/* Imagem */}
-        <div className="hidden md:block">
-          <img src={tenisJordan} alt="Tênis" className="w-[400px] object-contain" />
+        <div className="hidden md:block imagem-margem">
+          <img src={tenisJordan} alt="Tênis" className="w-[720px] object-contain" />
         </div>
       </div>
     </main>

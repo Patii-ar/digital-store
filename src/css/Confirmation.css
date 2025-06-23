@@ -1,0 +1,10 @@
+.order-confirmation {
+  padding: 24px;
+  margin-top: 32px;
+}
+.order-confirmation h3 {
+  margin-bottom: 6px;
+}
+.order-confirmation p {
+  margin-bottom: 2px;
+}

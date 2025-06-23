@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../css/CartPage.css";
 import {lista} from './ProductListing';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -63,6 +64,23 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
   }
 
     const relatedProducts = getRelatedProducts(cartItems, lista, 4);
+
+    const navigate = useNavigate();
+    <button
+        onClick={() =>
+            navigate("/checkout", {
+                state: {
+                    cartItems,
+                    subtotal,
+                    frete,
+                    total,
+                },
+            })
+        }
+        className="w-full bg-yellow-400 hover:bg-yellow-500 text-white py-2 rounded font-semibold"
+    >
+        Continuar
+    </button>
 
   return (
     <div className="cart-spacing bg-gray-50">
@@ -143,28 +161,6 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                 );
                 })}
 
-                {/* Produtos relacionados */}
-                {relatedProducts.length > 0 && (
-                    <div className="related-products mt-8">
-                        <h3 className="text-lg font-bold mb-4 uppercase border-b pb-2">Produtos relacionados</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            {relatedProducts.map((item) => (
-                                <div key={item.id} className="bg-white p-3 rounded shadow hover:shadow-lg transition cursor-pointer">
-                                    <img
-                                        src={item.image}
-                                        alt={item.nome}
-                                        className="w-full h-32 object-cover rounded mb-2"
-                                    />
-                                    <p className="text-sm font-medium">{item.name}</p>
-                                    <p className="text-yellow-600 font-semibold">R$ {item.price.toFixed(2)}</p>
-                                    
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                         <div>
                             <label className="block font-medium text-sm mb-1">Cupom de desconto</label>
@@ -222,7 +218,7 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                     <p className="text-gray-500 text-xs">
                         ou 10x de R$ {(total / 10).toFixed(2)} sem juros
                     </p>
-                    <button className="w-full bg-yellow-400 hover:bg-yellow-500 hover:cursor-pointer text-white py-2 rounded font-semibold">
+                    <button onClick={() => navigate("/checkout")} className="w-full bg-yellow-400 hover:bg-yellow-500 hover:cursor-pointer text-white py-2 rounded font-semibold">
                         Continuar
                     </button>
                 </div>
