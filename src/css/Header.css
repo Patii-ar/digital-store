@@ -1,48 +1,41 @@
 @import url("Index.css");
 @import 'tailwindcss';
 
-.primeira-section{
-    padding: 3rem 3rem 2.2rem;
+.primeira-section {
+  padding: 3rem 3rem 2.2rem;
 }
 
-.searchbar{
-    width: 50%;
-    padding: 1rem 1.8rem;
+.searchbar {
+  width: 50%;
+  padding: 1rem 1.8rem;
 }
 
-.input-pesquisa:focus{
-    box-shadow: 0 0 0 0;
-    border: none 0;
-    outline: 0;
+.input-pesquisa:focus {
+  box-shadow: none;
+  border: none;
+  outline: none;
 }
 
 .areacadastro {
-    padding-top: 0.3rem;
-    h4{
-        padding-top: 0.7rem;
-    }    
+  padding-top: 0.3rem;
 }
-    
-.botatoentrar{
-    padding: 0.8rem 2.8rem;
+.areacadastro h4 {
+  padding-top: 0.7rem;
 }
 
-.carrinho{
-    padding-top: 1rem;
+.botatoentrar {
+  padding: 0.8rem 2.8rem;
 }
 
-.lista{
-    padding: 0 3rem;
-    li{
-        padding-right:1.5rem ;
-    }
+.carrinho {
+  padding-top: 1rem;
 }
 
-.cart-icon-wrapper {
-  position: relative;
-  width: fit-content;
-  display: flex;
-  align-items: center;
+.lista {
+  padding: 0 3rem;
+}
+.lista li {
+  padding-right: 1.5rem;
 }
 
 .cart-quantity-badge {
@@ -60,3 +53,8 @@
   justify-content: center;
 }
 
+.cadastro-page .primeira-section {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  justify-content: flex-start;
+}

@@ -4,8 +4,6 @@ import Header from "./components/Header";
 import PageRoutes from "./routes/Routes";
 import "./css/App.css";
 import CartModal from "./components/CartModal";
-import CriarContaCompleta from "./components/CriarContaCompleta";
-import CriarContaSimples from "./components/CriarContaSimples";
 
 
 export default function App()  {

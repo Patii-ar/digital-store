@@ -66,63 +66,49 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
     const relatedProducts = getRelatedProducts(cartItems, lista, 4);
 
     const navigate = useNavigate();
-    <button
-        onClick={() =>
-            navigate("/checkout", {
-                state: {
-                    cartItems,
-                    subtotal,
-                    frete,
-                    total,
-                },
-            })
-        }
-        className="w-full bg-yellow-400 hover:bg-yellow-500 text-white py-2 rounded font-semibold"
-    >
-        Continuar
-    </button>
+    
 
   return (
     <div className="cart-spacing bg-gray-50">
         <div className="flex flex-col lg:flex-row gap-6">
-            <div className="flex-1 bg-white rounded-lg shadow-md p-4">
+            <div className="flex-1 bg-white rounded-lg shadow-md">
                 <h2 className="text-lg font-bold uppercase mb-4 text-center bg-gray-100">MEU CARRINHO</h2>
-                <div className="cart-header grid grid-cols-12 font-semibold text-sm border-b gap-2">
-                    <div className="col-span-5 flex text-center">Produto</div>
-                    <div className="col-span-2 flex justify-center">Quantidade</div>
-                <div className="col-span-2 text-center">Unitário</div>
-                <div className="col-span-3 text-right">Total</div>
-            </div>
+                <div className="cart-header grid grid-cols-12 font-semibold text-sm border-b py-3 px-2 text-gray-700">
+                    <div className="col-span-5">Produto</div>
+                    <div className="col-span-2 text-center box-text">Quantidade</div>
+                    <div className="col-span-2 text-center box-text">Unitário</div>
+                    <div className="col-span-3 text-right">Total</div>
+                </div>
 
                 {cartItems.map((item, index) => {
-                const precoComDesconto = item.desconto
-                    ? item.price * (1 - item.desconto / 100)
-                    : item.price;
+                    const precoComDesconto = item.desconto
+                        ? item.price * (1 - item.desconto / 100)
+                        : item.price;
 
-                return (
-                    <div
-                        key={index}
-                        className="grid grid-cols-12 items-center py-4 border-b gap-y-4"
-                    >
-                        <div className="col-span-5 flex gap-4">
-                            <img
-                                src={item.image}
-                                alt={item.name}
-                                className="w-20 h-20 object-cover rounded bg-gray-100"
-                            />
-                            <div>
-                                <p className="font-medium text-sm">{item.name}</p>
-                                <p className="text-xs text-gray-500">
-                                    Cor: {Array.isArray(item.cor) ? item.cor[0] : "N/A"}
-                                </p>
-                                <p className="text-xs text-gray-500">
-                                    Tamanho: {Array.isArray(item.tamanho) ? item.tamanho[0] : "N/A"}
-                                </p>
-                                <button
-                                    onClick={() => onRemove(index)}
-                                    className="text-xs text-pink-600 underline mt-1"
-                                >
-                                    Remover item
+                    return (
+                        <div
+                            key={index}
+                            className="grid grid-cols-12 items-center py-4 border-b gap-y-4"
+                        >
+                            <div className="col-span-5 flex gap-4 box-image">
+                                <img
+                                    src={item.image}
+                                    alt={item.name}
+                                    className="w-20 h-20 object-cover rounded bg-gray-100"
+                                />
+                                <div>
+                                    <p className="font-medium text-sm">{item.name}</p>
+                                    <p className="text-xs text-gray-500">
+                                        Cor: {Array.isArray(item.cor) ? item.cor[0] : "N/A"}
+                                    </p>
+                                    <p className="text-xs text-gray-500">
+                                        Tamanho: {Array.isArray(item.tamanho) ? item.tamanho[0] : "N/A"}
+                                    </p>
+                                    <button
+                                        onClick={() => onRemove(index)}
+                                        className="text-xs text-pink-600 underline mt-1"
+                                    >
+                                        Remover item
                                 </button>
                             </div>
                         </div>
@@ -161,7 +147,7 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                 );
                 })}
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 box-frete-cupom">
                         <div>
                             <label className="block font-medium text-sm mb-1">Cupom de desconto</label>
                             <div className="flex">
@@ -176,23 +162,23 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                         <div>
                             <label className="block font-medium text-sm mb-1">Calcular frete</label>
                             <div className="flex">
-                            <input
-                                type="text"
-                                placeholder="Insira seu CEP"
-                                maxLength={8}
-                                value={cep}
-                                onChange={(e) => setCep(e.target.value)}
-                                className="flex-1 border border-gray-300 px-3 py-2 rounded-l text-sm"
-                            />
-                            <button
-                                className="bg-gray-200 px-4 rounded-r text-sm hover:cursor-pointer "
-                                onClick={calcularFrete}
-                            >
-                                OK
-                            </button>
+                                <input
+                                    type="text"
+                                    placeholder="Insira seu CEP"
+                                    maxLength={8}
+                                    value={cep}
+                                    onChange={(e) => setCep(e.target.value)}
+                                    className="flex-1 border border-gray-300 px-3 py-2 rounded-l text-sm"
+                                />
+                                <button
+                                    className="bg-gray-200 px-4 rounded-r text-sm hover:cursor-pointer "
+                                    onClick={calcularFrete}
+                                >
+                                    OK
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
 
             {/* RESUMO */}
@@ -218,7 +204,19 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                     <p className="text-gray-500 text-xs">
                         ou 10x de R$ {(total / 10).toFixed(2)} sem juros
                     </p>
-                    <button onClick={() => navigate("/checkout")} className="w-full bg-yellow-400 hover:bg-yellow-500 hover:cursor-pointer text-white py-2 rounded font-semibold">
+                    <button
+                        onClick={() =>
+                            navigate("/checkout", {
+                                state: {
+                                    cartItems,
+                                    subtotal,
+                                    frete,
+                                    total,
+                                },
+                            })
+                        }
+                        className="w-full bg-yellow-400 hover:bg-yellow-500 text-white rounded font-semibold"
+                    >
                         Continuar
                     </button>
                 </div>
@@ -229,8 +227,7 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
         <div className="mt-12">
             <h2 className="text-lg font-semibold mb-4">Produtos Relacionados</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {relatedProducts.length > 0 ? (
-                relatedProducts.map((item) => (
+                {lista.slice(0, 4).map((item) => (
                     <div key={item.id} className="bg-white rounded shadow-md p-4 relative">
                         {item.desconto && (
                             <span className="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -244,17 +241,11 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                         />
                         <h3 className="text-sm font-medium mb-1">{item.name}</h3>
                         <p className="text-xs text-gray-500 mb-1">{item.brand}</p>
-                        <div className="text-pink-600 font-semibold text-sm mb-2">
+                        <div className="text-pink-600 font-semibold text-sm">
                             R$ {item.price.toFixed(2)}
                         </div>
-                        <button className="w-full bg-pink-600 hover:bg-pink-700 hover:cursor-pointer text-white text-sm py-1 rounded">
-                            Ver Produto
-                        </button>
                     </div>
-                ))
-                ) : (
-                    <p className="text-sm text-gray-500">Nenhum produto relacionado encontrado.</p>
-                )}
+                ))}
             </div>
         </div>
     </div>
