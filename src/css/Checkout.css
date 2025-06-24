@@ -1,0 +1,16 @@
+.p-formulario {
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.p-resumo {
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.input {
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  width: 100%;
+}

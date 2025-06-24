@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../css/CartPage.css";
 import {lista} from './ProductListing';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -64,18 +65,34 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
 
     const relatedProducts = getRelatedProducts(cartItems, lista, 4);
 
+    const navigate = useNavigate();
+    <button
+        onClick={() =>
+            navigate("/checkout", {
+                state: {
+                    cartItems,
+                    subtotal,
+                    frete,
+                    total,
+                },
+            })
+        }
+        className="w-full bg-yellow-400 hover:bg-yellow-500 text-white py-2 rounded font-semibold"
+    >
+        Continuar
+    </button>
+
   return (
-    <div className="cart-spacing bg-gray-50 p-4 md:p-8">
+    <div className="cart-spacing bg-gray-50">
         <div className="flex flex-col lg:flex-row gap-6">
-        {/* Lista de Itens */}
             <div className="flex-1 bg-white rounded-lg shadow-md p-4">
-                <h2 className="text-lg font-semibold mb-4">MEU CARRINHO</h2>
-                <div className="grid grid-cols-12 font-semibold text-sm border-b py-2">
-                    <div className="col-span-5">Produto</div>
-                    <div className="col-span-2 text-center">Quantidade</div>
-                    <div className="col-span-2 text-center">Unitário</div>
-                    <div className="col-span-3 text-right">Total</div>
-                </div>
+                <h2 className="text-lg font-bold uppercase mb-4 text-center bg-gray-100">MEU CARRINHO</h2>
+                <div className="cart-header grid grid-cols-12 font-semibold text-sm border-b gap-2">
+                    <div className="col-span-5 flex text-center">Produto</div>
+                    <div className="col-span-2 flex justify-center">Quantidade</div>
+                <div className="col-span-2 text-center">Unitário</div>
+                <div className="col-span-3 text-right">Total</div>
+            </div>
 
                 {cartItems.map((item, index) => {
                 const precoComDesconto = item.desconto
@@ -144,7 +161,6 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                 );
                 })}
 
-                    {/* Inputs de cupom e frete */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                         <div>
                             <label className="block font-medium text-sm mb-1">Cupom de desconto</label>
@@ -152,9 +168,9 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                                 <input
                                     type="text"
                                     placeholder="Insira seu código"
-                                    className="flex-1 border border-gray-300 px-3 py-2 rounded-l text-sm"
+                                    className="flex-1 border border-gray-300 px-3 py-2 rounded-l text-sm "
                                 />
-                                <button className="bg-gray-200 px-4 rounded-r text-sm">OK</button>
+                                <button className="bg-gray-200 px-4 rounded-r text-sm hover:cursor-pointer">OK</button>
                             </div>
                         </div>
                         <div>
@@ -169,7 +185,7 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                                 className="flex-1 border border-gray-300 px-3 py-2 rounded-l text-sm"
                             />
                             <button
-                                className="bg-gray-200 px-4 rounded-r text-sm"
+                                className="bg-gray-200 px-4 rounded-r text-sm hover:cursor-pointer "
                                 onClick={calcularFrete}
                             >
                                 OK
@@ -180,9 +196,9 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
             </div>
 
             {/* RESUMO */}
-            <div className="w-full lg:w-80 bg-white rounded-lg shadow-md p-4 h-fit">
-                <h3 className="text-base font-semibold mb-4">RESUMO</h3>
-                <div className="space-y-2 text-sm">
+            <div className="w-full lg:w-80 bg-white rounded-lg shadow-md p-4 h-fit space-y-3">
+                <h3 className="text-base font-semibold uppercase">RESUMO</h3>
+                <div className="text-sm">
                     <div className="flex justify-between">
                         <span>Subtotal:</span>
                         <span>R$ {subtotal.toFixed(2)}</span>
@@ -202,7 +218,7 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                     <p className="text-gray-500 text-xs">
                         ou 10x de R$ {(total / 10).toFixed(2)} sem juros
                     </p>
-                    <button className="w-full bg-yellow-400 text-white py-2 rounded font-semibold mt-2">
+                    <button onClick={() => navigate("/checkout")} className="w-full bg-yellow-400 hover:bg-yellow-500 hover:cursor-pointer text-white py-2 rounded font-semibold">
                         Continuar
                     </button>
                 </div>
@@ -215,7 +231,12 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {relatedProducts.length > 0 ? (
                 relatedProducts.map((item) => (
-                    <div key={item.id} className="bg-white rounded shadow-md p-4">
+                    <div key={item.id} className="bg-white rounded shadow-md p-4 relative">
+                        {item.desconto && (
+                            <span className="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+                                {item.desconto}% OFF
+                            </span>
+                        )}
                         <img
                             src={item.image}
                             alt={item.name}
@@ -226,7 +247,7 @@ export default function CartPage({ cartItems, onRemove, onUpdateCart }) {
                         <div className="text-pink-600 font-semibold text-sm mb-2">
                             R$ {item.price.toFixed(2)}
                         </div>
-                        <button className="w-full bg-pink-600 hover:bg-pink-700 text-white text-sm py-1 rounded">
+                        <button className="w-full bg-pink-600 hover:bg-pink-700 hover:cursor-pointer text-white text-sm py-1 rounded">
                             Ver Produto
                         </button>
                     </div>

@@ -1,0 +1,60 @@
+/* CriarConta.css */
+
+.criarconta-container {
+  padding: 1rem;
+  padding-bottom: 5rem; /* espaço extra no mobile */
+}
+
+.criarconta-wrapper {
+  gap: 5rem; /* espaço entre o form e a imagem */
+}
+
+@media (min-width: 768px) {
+  .criarconta-container {
+    padding: 2rem 4rem;
+    padding-bottom: 2rem; /* menor espaçamento em desktop */
+  }
+
+  .criarconta-wrapper {
+    gap: 7rem;
+  }
+
+  .imagem-margem {
+    margin-left: 4rem;
+  }
+}
+ .text-possuiconta {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+ }
+
+ .text-criarconta {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    
+ }
+
+ .text-email {
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+ }
+
+ .text-login {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+ }
+
+ .box-email {
+    margin-left: 1rem;
+ }
+
+ .box-email-container {
+    margin-left: 1rem;
+    margin-top: 1rem;
+ }
+
+ .section-form {
+    padding: 1rem;
+    padding-right: 3rem;
+ }
