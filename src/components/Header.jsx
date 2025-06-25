@@ -87,8 +87,8 @@ export default function Header({ onCartClick, cartQuantity }) {
                   Cadastre-se
                 </h4>
               </Link>
-              <Link to="/">
-                <button className="botatoentrar bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-lg transition">
+              <Link to="/login">
+                <button className="botatoentrar bg-pink-600 hover:bg-pink-700 hover:cursor-pointer text-white font-bold rounded-lg transition">
                   Entrar
                 </button>
               </Link>

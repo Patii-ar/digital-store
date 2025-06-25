@@ -1,0 +1,24 @@
+@import url("Index.css");
+@import 'tailwindcss';
+
+.button {
+    margin-top: 2.2rem;
+    padding: 0.5rem;
+}
+
+.forms {
+    padding: 2rem;
+    margin: 1.8rem;
+}
+
+.image{
+    margin: 1.8rem;
+}
+
+.input1{
+    padding: 1rem;
+}
+
+.socials{
+    margin-left: 0.5rem;
+}

@@ -4,9 +4,25 @@ import Header from "./components/Header";
 import PageRoutes from "./routes/Routes";
 import "./css/App.css";
 import CartModal from "./components/CartModal";
+import { matchRoutes, useLocation } from "react-router-dom";
 
+const routes = [
+  { path: '/' },
+  { path: '/login' },
+  { path: '/criar-conta' },
+  { path: '/criar-conta-simples' },
+  { path: '/produtos' },
+  { path: '/produtos/:id' },
+  { path: '/carrinho' },
+  { path: '/checkout' }
+];
 
 export default function App()  {
+
+  const location = useLocation();
+  const matched = matchRoutes(routes, location);
+  const isNotFound = !matched;
+
   const [cartItems, setCartItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -68,23 +84,26 @@ export default function App()  {
 
   return (
     <div className="main">
-      <Header onCartClick={() => setIsModalOpen(true)} cartQuantity={totalQuantity} />
-      
+      {!isNotFound && (
+        <Header onCartClick={() => setIsModalOpen(true)} cartQuantity={totalQuantity} />
+      )}
       <PageRoutes 
         onAddToCart={handleAddToCart} 
         cartItems={cartItems} 
         onRemove={handleRemoveItem}
         onUpdateCart={handleUpdateCart}
       />
-      <CartModal 
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        cartItems={cartItems}
-        onClearCart={handleClearCart}
-        onChangeQuantity={handleChangeQuantity}
-        onRemove={handleRemoveItem}
-      />
-      <Footer />
+      {!isNotFound && 
+        (<CartModal 
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          cartItems={cartItems}
+          onClearCart={handleClearCart}
+          onChangeQuantity={handleChangeQuantity}
+          onRemove={handleRemoveItem}
+        />
+      )}
+      {!isNotFound && <Footer />}
     </div>
   );
 };
