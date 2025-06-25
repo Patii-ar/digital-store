@@ -83,7 +83,7 @@ export default function Header({ onCartClick, cartQuantity }) {
             {/* Área de cadastro e carrinho */}
             <div className="areacadastro flex items-center gap-6">
               <Link to="/criar-conta-simples">
-                <h4 className="text-gray-700 hover:text-pink-600 underline underline-offset-2">
+                <h4 className="text-gray-700 hover:text-pink-600 hover:cursor-pointer underline underline-offset-2">
                   Cadastre-se
                 </h4>
               </Link>
@@ -93,7 +93,7 @@ export default function Header({ onCartClick, cartQuantity }) {
                 </button>
               </Link>
               <button onClick={onCartClick} className="carrinho relative">
-                <FaShoppingCart className="text-xl text-pink-600" />
+                <FaShoppingCart className="text-xl text-pink-600 hover:cursor-pointer" />
                 {cartQuantity > 0 && (
                   <span className="cart-quantity-badge">
                     {cartQuantity}

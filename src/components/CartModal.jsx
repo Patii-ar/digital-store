@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import "../css/CartModal.css";
 import { FiTrash } from "react-icons/fi";
 
@@ -7,6 +8,10 @@ import { FiTrash } from "react-icons/fi";
 export default function CartModal({ isOpen, onClose, cartItems, onClearCart, onChangeQuantity, onRemove }) {
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   if (!isOpen) return null;
 
@@ -47,14 +52,14 @@ export default function CartModal({ isOpen, onClose, cartItems, onClearCart, onC
                     <button
                       onClick={() => onChangeQuantity(index, item.quantity - 1)}
                       disabled={item.quantity <= 1}
-                      className="px-2 rounded hover:bg-gray-200"
+                      className="px-2 rounded hover:bg-gray-200 hover:cursor-pointer"
                     >
                       -
                     </button>
                     <span className="mx-2">{item.quantity}</span>
                     <button
                       onClick={() => onChangeQuantity(index, item.quantity + 1)}
-                      className="px-2 rounded hover:bg-gray-200"
+                      className="px-2 rounded hover:bg-gray-200 hover:cursor-pointer"
                     >
                       +
                     </button>
@@ -70,7 +75,7 @@ export default function CartModal({ isOpen, onClose, cartItems, onClearCart, onC
                 </div>
                 <button
                   onClick={() => onRemove(index)}
-                  className="relative top-7 right-0 text-gray-400 hover:text-pink-600 transition"
+                  className="relative top-7 right-0 text-gray-400 hover:text-pink-600 hover:cursor-pointer transition"
                   aria-label="Remover item"
                 >
                   <FiTrash className="text-lg" />
@@ -86,7 +91,7 @@ export default function CartModal({ isOpen, onClose, cartItems, onClearCart, onC
         </div>
 
         <div className="flex justify-between items-center cart-actions">
-          <button onClick={onClearCart} className="text-gray-500 underline hover:text-pink-600">
+          <button onClick={onClearCart} className="text-gray-500 underline hover:text-pink-600 hover:cursor-pointer">
             Esvaziar
           </button>
           <button
@@ -94,7 +99,7 @@ export default function CartModal({ isOpen, onClose, cartItems, onClearCart, onC
               onClose();
               navigate("/carrinho");
             }}
-            className="bg-pink-600 text-white rounded hover:bg-pink-700 transition cart-button"
+            className="bg-pink-600 text-white rounded hover:bg-pink-700 hover:cursor-pointer transition cart-button"
           >
             Ver Carrinho
           </button>

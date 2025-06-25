@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../css/Checkout.css";
-import Confirmation from "./Confirmation"; 
+import Confirmation from "./Confirmation";
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
@@ -14,6 +14,22 @@ export default function CheckoutPage() {
     total: 0,
   });
 
+  const [formData, setFormData] = useState({
+    name: "",
+    cpf: "",
+    email: "",
+    phone: "",
+    address: "",
+    neighborhood: "",
+    city: "",
+    cep: "",
+    complemento: "",
+    cardNumber: "",
+    cardValidity: "",
+    cardHolder: "",
+    cvv: "",
+  });
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState(() => {
@@ -21,14 +37,19 @@ export default function CheckoutPage() {
   });
 
   useEffect(() => {
-    if (state?.cartItems?.length > 0) {
-      setData(state);
+    if (state?.localCartItems?.length > 0) {
+      setData({
+        cartItems: state.localCartItems,
+        subtotal: state.subtotal,
+        frete: state.frete,
+        total: state.total,
+      });
     } else {
       const stored = {
-        cartItems: JSON.parse(localStorage.getItem("checkout_cart")) || [],
-        subtotal: parseFloat(localStorage.getItem("checkout_subtotal")) || 0,
-        frete: parseFloat(localStorage.getItem("checkout_frete")) || 0,
-        total: parseFloat(localStorage.getItem("checkout_total")) || 0,
+        cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
+        subtotal: parseFloat(localStorage.getItem("subtotal")) || 0,
+        frete: parseFloat(localStorage.getItem("frete")) || 0,
+        total: parseFloat(localStorage.getItem("total")) || 0,
       };
       setData(stored);
     }
@@ -39,24 +60,18 @@ export default function CheckoutPage() {
     localStorage.setItem("checkout_paymentMethod", paymentMethod);
   }, [paymentMethod]);
 
-  const { cartItems, total } = data;
+  const { cartItems, total, subtotal, frete } = data;
 
   if (!isLoaded) return null;
 
   if (orderComplete) {
     const order = {
-      name: "",
-      cpf: "",
-      email: "",
-      phone: "",
-      address: "",
-      neighborhood: "",
-      city: "",
-      cep: "",
-      cardHolder: "",
-      cardEnd: "",
+      ...formData,
+      paymentMethod,
       products: cartItems,
-      total: total,
+      subtotal,
+      frete,
+      total,
     };
 
     return <Confirmation order={order} />;
@@ -82,55 +97,50 @@ export default function CheckoutPage() {
     localStorage.clear();
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div className="flex flex-col md:flex-row gap-6 px-4 md:px-12">
       {/* FORMULÁRIO */}
       <form onSubmit={handleSubmit} className="flex-1 bg-white rounded-xl shadow p-formulario">
         <h2 className="text-xl font-semibold mb-4">Informações Pessoais</h2>
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-          <input placeholder="Nome Completo" className="input" required />
-          <input placeholder="CPF" className="input" required />
-          <input placeholder="Email" className="input" required />
-          <input placeholder="Celular" className="input" required />
+        <div className="grid grid-cols-1 gap-4">
+          <input name="name" value={formData.name} onChange={handleChange} placeholder="Nome Completo" className="input" required />
+          <input name="cpf" value={formData.cpf} onChange={handleChange} placeholder="CPF" className="input" required />
+          <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" className="input" required />
+          <input name="phone" value={formData.phone} onChange={handleChange} placeholder="Celular" className="input" required />
         </div>
 
         <h2 className="text-xl font-semibold mt-6 mb-4">Endereço de Entrega</h2>
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-          <input placeholder="Endereço" className="input" required />
-          <input placeholder="Bairro" className="input" required />
-          <input placeholder="Cidade" className="input" required />
-          <input placeholder="CEP" className="input" required />
-          <input placeholder="Complemento" className="input md:col-span-1" />
+        <div className="grid grid-cols-1 gap-4">
+          <input name="address" value={formData.address} onChange={handleChange} placeholder="Endereço" className="input" required />
+          <input name="neighborhood" value={formData.neighborhood} onChange={handleChange} placeholder="Bairro" className="input" required />
+          <input name="city" value={formData.city} onChange={handleChange} placeholder="Cidade" className="input" required />
+          <input name="cep" value={formData.cep} onChange={handleChange} placeholder="CEP" className="input" required />
+          <input name="complemento" value={formData.complemento} onChange={handleChange} placeholder="Complemento" className="input" />
         </div>
 
         <h2 className="text-xl font-semibold mt-6 mb-4">Pagamento</h2>
         <div className="flex items-center gap-4 mb-2">
           <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              value="cartao"
-              checked={paymentMethod === "cartao"}
-              onChange={() => setPaymentMethod("cartao")}
-            />
+            <input type="radio" value="cartao" checked={paymentMethod === "cartao"} onChange={() => setPaymentMethod("cartao")} />
             Cartão de Crédito
           </label>
           <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              value="boleto"
-              checked={paymentMethod === "boleto"}
-              onChange={() => setPaymentMethod("boleto")}
-            />
+            <input type="radio" value="boleto" checked={paymentMethod === "boleto"} onChange={() => setPaymentMethod("boleto")} />
             Boleto Bancário
           </label>
         </div>
 
         {paymentMethod === "cartao" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input placeholder="Número do Cartão" className="input" required />
-            <input placeholder="Validade do Cartão" className="input" required />
-            <input placeholder="Nome no Cartão" className="input" required />
-            <input placeholder="CVV" className="input" required />
+            <input name="cardNumber" value={formData.cardNumber} onChange={handleChange} placeholder="Número do Cartão" className="input" required />
+            <input name="cardValidity" value={formData.cardValidity} onChange={handleChange} placeholder="Validade do Cartão" className="input" required />
+            <input name="cardHolder" value={formData.cardHolder} onChange={handleChange} placeholder="Nome no Cartão" className="input" required />
+            <input name="cvv" value={formData.cvv} onChange={handleChange} placeholder="CVV" className="input" required />
           </div>
         )}
 
@@ -141,7 +151,7 @@ export default function CheckoutPage() {
 
         <button
           type="submit"
-          className="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 mt-4 rounded-xl"
+          className="w-full bg-yellow-400 hover:bg-yellow-500 hover:cursor-pointer text-white font-bold py-2 mt-4 rounded-xl"
         >
           Realizar Pagamento
         </button>
@@ -166,11 +176,11 @@ export default function CheckoutPage() {
         <div className="border-t pt-4 text-sm">
           <div className="flex justify-between mb-1">
             <span>Subtotal</span>
-            <span>R$ {(total - 10).toFixed(2)}</span>
+            <span>R$ {subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between mb-1">
             <span>Frete</span>
-            <span>R$ 10,00</span>
+            <span>R$ {frete.toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-semibold text-lg">
             <span>Total</span>
@@ -180,7 +190,7 @@ export default function CheckoutPage() {
 
         <button
           onClick={handleSubmit}
-          className="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 mt-6 rounded-xl"
+          className="w-full bg-yellow-400 hover:bg-yellow-500 hover:cursor-pointer text-white font-bold py-2 mt-6 rounded-xl"
         >
           Finalizar Pagamento
         </button>
