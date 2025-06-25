@@ -87,7 +87,7 @@ export default function CheckoutPage() {
       {/* FORMULÁRIO */}
       <form onSubmit={handleSubmit} className="flex-1 bg-white rounded-xl shadow p-formulario">
         <h2 className="text-xl font-semibold mb-4">Informações Pessoais</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
           <input placeholder="Nome Completo" className="input" required />
           <input placeholder="CPF" className="input" required />
           <input placeholder="Email" className="input" required />
@@ -95,12 +95,12 @@ export default function CheckoutPage() {
         </div>
 
         <h2 className="text-xl font-semibold mt-6 mb-4">Endereço de Entrega</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
           <input placeholder="Endereço" className="input" required />
           <input placeholder="Bairro" className="input" required />
           <input placeholder="Cidade" className="input" required />
           <input placeholder="CEP" className="input" required />
-          <input placeholder="Complemento" className="input md:col-span-2" />
+          <input placeholder="Complemento" className="input md:col-span-1" />
         </div>
 
         <h2 className="text-xl font-semibold mt-6 mb-4">Pagamento</h2>
