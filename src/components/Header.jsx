@@ -11,7 +11,7 @@ export default function Header({ onCartClick, cartQuantity }) {
   const [searchOpen, setSearchOpen] = useState(false);
 
   const isCadastroPage =
-    location.pathname === "/criar-conta" || location.pathname === "/criar-conta-simples";
+    location.pathname === "/criar-conta" || location.pathname === "/criar-conta-simples" || location.pathname === "/login";
 
   return (
     <header className="w-full flex flex-col shadow-sm bg-white">

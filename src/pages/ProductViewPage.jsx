@@ -6,6 +6,7 @@ import '../css/spacing.css';
 import Section from '../components/Section';
 import arrowLeft from '../assets/arrow-left.svg';
 import arrowRight from '../assets/arrow-right.svg';
+import { useState } from 'react';
 
 const link = {src: "/produtos", text: "Ver Todos"};
 
@@ -25,14 +26,19 @@ function PrevPic ({ onClick }){
     )
 };
 
-export default function ProductViewPage() {
+export default function ProductViewPage({ onAddToCart }) {
     
     const { id } = useParams();
+
     const product = lista.find(prod => prod.id == id);
+
+    const [selectColor, setSelectColor] = useState(product.color[0]);
+    const [selectSize, setSelectSize] = useState (null);
+
     const discountPrice = (product.price - (product.discount * product.price / 100)).toFixed(2);
 
     const imageCarousel = product.color.map((color, index) => (
-        <div key={index} className='h-[750px]'>
+        <div key={index} className='2xl:h-[700px] lg:h-[550px] md:h-[480px] h-[300px]'>
             <img src={product.image} alt= {product.name} style={{backgroundColor: color}} className='h-full w-full object-scale-down'/>
         </div>
     ));
@@ -56,9 +62,9 @@ export default function ProductViewPage() {
 
     return (
         <div className='bg-gray-50 text-gray-900'>
-            <main className='max-w-7x1 mx-auto spacing-px-md spacing-my-lg'>
+            <main className='spacing-px-md spacing-my-lg'>
                 <div className='flex flex-col md:flex-row gap-8 spacing-my-md'>
-                    <div className='flex-1 w-1/5 h-[900px]'>
+                    <div className='flex-1 w-full md:w-1/2'>
                         <Slider {...settings}>
                             {imageCarousel}
                         </Slider>
@@ -91,7 +97,8 @@ export default function ProductViewPage() {
                                 {product.size.map((size) => (
                                     <button 
                                         key={size}
-                                        className='border border-(--lightgray2) rounded px-3 py-1 hover:bg-(--principal) hover:text-(--white) text-sm w-12 h-12'
+                                        onClick={() => setSelectSize(size)}
+                                        className={`border border-(--lightgray2) rounded text-sm w-12 h-12 ${selectSize === size ? 'bg-(--principal) text-(--white)': 'hover:bg-(--principal) hover:text-(--white)'}`}
                                     > {size} 
                                     </button>
                                 ))}
@@ -103,12 +110,19 @@ export default function ProductViewPage() {
                             <label className='block text-sm font-medium spacing-mb-sm'>Cor</label>
                             <div className='flex gap-2'>
                                 {product.color.map((color) => (
-                                    <span key={color} style={{backgroundColor: color}} className={`w-6 h-6 rounded-full border cursor-pointer`} />
+                                    <span 
+                                        key={color} 
+                                        onClick={() => setSelectColor(color)}
+                                        style={{backgroundColor: color}} 
+                                        className={`w-6 h-6 rounded-full border cursor-pointer ${selectColor === color ? 'border-[3px] border-(--darkgray)' : 'border-none'}`} 
+                                    />
                                 ))}
                             </div>
                         </div>
 
-                        <button className='bg-[#FFB31F] hover:bg-[#ffad09] text-white font-medium px-6 py-2 rounded spacing-mt-lg w-50 h-12 cursor-pointer'>COMPRAR</button>
+                        <button className='bg-[#FFB31F] hover:bg-[#ffad09] text-white font-medium rounded spacing-mt-lg w-50 h-12 cursor-pointer' onClick={() => onAddToCart?.(product, selectColor, selectSize)}>
+                            COMPRAR
+                        </button>
                     </div>
                 </div>
 
