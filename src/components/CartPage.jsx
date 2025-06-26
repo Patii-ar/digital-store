@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../css/CartPage.css";
 import { lista } from "./ProductListing";
 import { useNavigate } from "react-router-dom";
+import ProductCard from "./ProductCard";
 
 export default function CartPage({ cartItems, onUpdateCart }) {
   const [cep, setCep] = useState(() => localStorage.getItem("cep") || "");
@@ -134,6 +135,20 @@ export default function CartPage({ cartItems, onUpdateCart }) {
       },
     });
   }
+
+const idsCarrinho = localCartItems.map(i => i.id);
+
+const categoriasCarrinho = localCartItems
+  .map(i => lista.find(p => p.id === i.id)?.category)
+  .filter(Boolean);
+
+const produtosRelacionados = lista
+  .filter(item =>
+    categoriasCarrinho.includes(item.category) && 
+    !idsCarrinho.includes(item.id)                
+  )
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 4);
 
   return (
     <div className="cart-spacing bg-gray-50">
@@ -306,27 +321,7 @@ export default function CartPage({ cartItems, onUpdateCart }) {
         {/* PRODUTOS RELACIONADOS */}
         <div className="mt-12">
             <h2 className="text-lg font-semibold mb-4 text-pr">Produtos Relacionados</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {lista.slice(0, 4).map((item) => (
-                    <div key={item.id} className="bg-white rounded shadow-md p-4 relative">
-                        {item.desconto && (
-                            <span className="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
-                                {item.desconto}% OFF
-                            </span>
-                        )}
-                        <img
-                            src={item.image}
-                            alt={item.name}
-                            className="w-full h-36 object-cover mb-2 rounded"
-                        />
-                        <h3 className="text-sm font-medium mb-1">{item.name}</h3>
-                        <p className="text-xs text-gray-500 mb-1">{item.brand}</p>
-                        <div className="text-pink-600 font-semibold text-sm">
-                            R$ {item.price.toFixed(2)}
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <ProductCard lista = {produtosRelacionados} />
         </div>
     </div>
   );

@@ -14,7 +14,8 @@ const routes = [
   { path: '/produtos' },
   { path: '/produtos/:id' },
   { path: '/carrinho' },
-  { path: '/checkout' }
+  { path: '/checkout' },
+  { path: '/esqueci-senha' }
 ];
 
 export default function App()  {

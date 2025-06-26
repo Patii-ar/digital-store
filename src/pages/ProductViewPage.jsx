@@ -32,6 +32,10 @@ export default function ProductViewPage({ onAddToCart }) {
 
     const product = lista.find(prod => prod.id == id);
 
+    const related = lista
+        .filter(cat => cat.category == product.category)
+        .filter(prod => prod.id !== product.id);
+    
     const [selectColor, setSelectColor] = useState(product.color[0]);
     const [selectSize, setSelectSize] = useState (null);
 
@@ -111,7 +115,7 @@ export default function ProductViewPage({ onAddToCart }) {
                             <div className='flex gap-2'>
                                 {product.color.map((color) => (
                                     <span 
-                                        key={color} 
+                                        key={color}
                                         onClick={() => setSelectColor(color)}
                                         style={{backgroundColor: color}} 
                                         className={`w-6 h-6 rounded-full border cursor-pointer ${selectColor === color ? 'border-[3px] border-(--darkgray)' : 'border-none'}`} 
@@ -127,8 +131,8 @@ export default function ProductViewPage({ onAddToCart }) {
                 </div>
 
                 {/* Produtos Relacionados */}
-                <Section title="Produtos Relacionados" link = {link} titleAlign= "center" >
-                    <ProductCard lista={lista.slice(0, 4)} />
+                <Section title="Produtos Relacionados" link = {link} titleAlign= 'center' >
+                    <ProductCard lista={related} />
                 </Section>
             </main>
         </div>
