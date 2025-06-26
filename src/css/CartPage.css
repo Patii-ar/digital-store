@@ -70,3 +70,30 @@
   margin-left: 1rem;
   margin-right: 2rem;
 }
+
+.box-resume {
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
+.box-cart {
+  margin-left: 2rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  margin-right: 2rem;
+}
+
+.text-resume {
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.text-box-resume {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.text-pr {
+  margin-bottom: 2rem;
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import PageRoutes from "./routes/Routes";
@@ -61,9 +61,9 @@ export default function App()  {
     setCartItems(prev => prev.filter((_, i) => i !== index));
   }
 
-  function handleUpdateCart(newItems) {
+  const handleUpdateCart= useCallback((newItems) => {
     setCartItems(newItems);
-  }
+  }, []);
 
 
   function handleClearCart() {
