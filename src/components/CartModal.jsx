@@ -37,7 +37,7 @@ export default function CartModal({ isOpen, onClose, cartItems, onClearCart, onC
           ) : (
 
             cartItems.map((item, index) => (
-              <div key={index} className="flex items-center gap-4 border-b cart-item">
+              <div key={index} className="flex gap-4 border-b cart-item">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -72,13 +72,14 @@ export default function CartModal({ isOpen, onClose, cartItems, onClearCart, onC
                       R$ {(item.oldPrice * item.quantity).toFixed(2)}
                     </p>
                   )}
+                  
                 </div>
                 <button
-                  onClick={() => onRemove(index)}
-                  className="relative top-7 right-0 text-gray-400 hover:text-pink-600 hover:cursor-pointer transition"
-                  aria-label="Remover item"
-                >
-                  <FiTrash className="text-lg" />
+                    onClick={() => onRemove(index)}
+                    className="relative items-center text-gray-400 hover:text-pink-600 hover:cursor-pointer transition"
+                    aria-label="Remover item"
+                  >
+                    <FiTrash className="text-lg" />
                 </button>
               </div>
             ))
