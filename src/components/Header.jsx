@@ -4,9 +4,13 @@ import logo from "../assets/logo.svg";
 import { CiSearch } from "react-icons/ci";
 import { FaShoppingCart } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FaTimes } from "react-icons/fa";
 import "../css/Header.css";
 
 export default function Header({ onCartClick, cartQuantity }) {
+
+  const [menuAberto, setMenuAberto] = useState(false);
+
   const location = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -16,14 +20,18 @@ export default function Header({ onCartClick, cartQuantity }) {
   return (
     <header className="w-full flex flex-col shadow-sm bg-white">
       {/* Mobile Header */}
-      <div className="flex items-center justify-between px-4 py-2 sm:hidden">
+      <div className=" block sm:hidden flex justify-between gap-4">
         {/* Ícone de menu hambúrguer */}
-        <button onClick={() => console.log("Abrir menu lateral")}>
-          <GiHamburgerMenu className="text-2xl text-pink-600" />
+        <button onClick={() => setMenuAberto(!menuAberto)}>
+          {menuAberto ? (
+            <FaTimes className="text-2xl text-pink-600" />
+          ) : (
+            <GiHamburgerMenu className="text-2xl text-pink-600" />
+          )}
         </button>
 
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-1">
+        <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="Logo Digital Store" className="h-6" />
           
         </Link>
@@ -59,6 +67,35 @@ export default function Header({ onCartClick, cartQuantity }) {
           </div>
         </div>
       )}
+
+      <div className={`menu-mobile sm:hidden ${menuAberto ? "visible" : "hidden"}`}>
+        <nav>
+          <ul className="text-menu">
+            <li>
+              <Link to="/" onClick={() => setMenuAberto(false)}>Home</Link>
+            </li>
+            <li>
+              <Link to="/produtos" onClick={() => setMenuAberto(false)}>Produtos</Link>
+            </li>
+            <li>
+              <Link to="/categorias" onClick={() => setMenuAberto(false)}>Categorias</Link>
+            </li>
+            <li>
+              <Link to="/pedidos" onClick={() => setMenuAberto(false)}>Meus Pedidos</Link>
+            </li>
+          </ul>
+
+          <div className="auth-buttons">
+            <Link to="/criar-conta-simples" onClick={() => setMenuAberto(false)}>
+              <h4>Cadastre-se</h4>
+            </Link>
+            <Link to="/login" onClick={() => setMenuAberto(false)}>
+              <button>Entrar</button>
+            </Link>
+          </div>
+        </nav>
+      </div>
+
 
       {/* Desktop Header */}
       <section className={`primeira-section hidden sm:flex items-center ${isCadastroPage ? "cadastro-page" : "justify-between"}`}>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../css/CartPage.css";
+import { useMemo } from "react";
 import { lista } from "./ProductListing";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "./ProductCard";
@@ -142,13 +143,16 @@ const categoriasCarrinho = localCartItems
   .map(i => lista.find(p => p.id === i.id)?.category)
   .filter(Boolean);
 
-const produtosRelacionados = lista
-  .filter(item =>
-    categoriasCarrinho.includes(item.category) && 
-    !idsCarrinho.includes(item.id)                
-  )
-  .sort(() => Math.random() - 0.5)
-  .slice(0, 4);
+const produtosRelacionados = useMemo(() => {
+  return lista
+    .filter(item =>
+      categoriasCarrinho.includes(item.category) && 
+      !idsCarrinho.includes(item.id)                
+    )
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 4);
+}, [categoriasCarrinho, idsCarrinho]);
+
 
   return (
     <div className="cart-spacing bg-gray-50">
