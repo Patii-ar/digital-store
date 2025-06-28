@@ -57,29 +57,34 @@ A navegação é feita por meio de links no menu ou por redirecionamentos após 
 ## 🚀 Como Rodar Localmente
 
 1. **Clone o repositório:**
+   
    `bash`
    `git clone https://github.com/sudobrunowoodo/digital-store.git
    cd digital-store`
 
 2. **Instale as dependências:**
+   
   `bash`
   `npm install`
 
 3. **Inicie o projeto:**
+   
   `bash`
   `npm run dev`
 
 4. **Acesse no navegador:**
-  `http://localhost:5173/`
 
-5. **Instruções de Navegação**
-   *Página de LOGIN:*
+   `http://localhost:5173/`
+
+7. **Instruções de Navegação**
+   
+   ***Página de LOGIN:***
 
    Login: teste
    
    Senha: 123456
 
-   *Carrrinho*
+   ***Carrrinho***
    
      adicionar Cupom: DESCONTO10 e PROMO20
          
