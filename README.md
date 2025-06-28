@@ -103,9 +103,9 @@ A navegação é feita por meio de links no menu ou por redirecionamentos após 
   
   │   ├── css/
   
-  │   ├── routes.jsx/
+  │   ├── routes/
   
-  │   └── App.jsx
+  │   └── App
   
   ├── .gitignore
   
