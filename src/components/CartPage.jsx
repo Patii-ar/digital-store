@@ -5,7 +5,7 @@ import { lista } from "./ProductListing";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "./ProductCard";
 
-export default function CartPage({ cartItems, onUpdateCart }) {
+export default function CartPage({ cartItems, onUpdateCart}) {
   const [cep, setCep] = useState(() => localStorage.getItem("cep") || "");
   const [frete, setFrete] = useState(() => parseFloat(localStorage.getItem("frete")) || 0);
   const [freteCalculado, setFreteCalculado] = useState(false);
@@ -14,29 +14,18 @@ export default function CartPage({ cartItems, onUpdateCart }) {
     return saved ? JSON.parse(saved) : [];
   });
 
-    useEffect(() => {
-        if(cartItems && cartItems.length) {
-            setLocalCartItems(cartItems);
-    }
-    }, [cartItems]);
-
-  // Estados para cupom de desconto
   const [couponCode, setCouponCode] = useState("");
   const [couponDiscount, setCouponDiscount] = useState(0);
   const [couponApplied, setCouponApplied] = useState(false);
 
   const navigate = useNavigate();
 
-  // Sincroniza localCartItems com prop cartItems
   useEffect(() => {
     if (cartItems && cartItems.length) {
       setLocalCartItems(cartItems);
     }
   }, [cartItems]);
-
-  // Atualiza localStorage e callback pai ao mudar localCartItems
   
-
   useEffect(() => {
     localStorage.setItem("cep", cep);
   }, [cep]);
@@ -46,26 +35,28 @@ export default function CartPage({ cartItems, onUpdateCart }) {
   }, [frete]);
 
   // Cálculo subtotal e descontos dos produtos
-  const subtotal = localCartItems.reduce((acc, item) => {
-    const precoComDesconto = item.desconto
-      ? item.price * (1 - item.desconto / 100)
-      : item.price;
-    return acc + precoComDesconto * item.quantity;
-  }, 0);
+  const subtotal = useMemo(() => {
+    return localCartItems.reduce((acc, item) => {
+      const precoComDesconto = item.desconto
+        ? item.price * (1 - item.desconto / 100)
+        : item.price;
+      return acc + precoComDesconto * item.quantity;
+    }, 0);
+  }, [localCartItems]);
+  
 
-  const descontoProdutos = localCartItems.reduce((acc, item) => {
-    return item.desconto
-      ? acc + item.price * (item.desconto / 100) * item.quantity
-      : acc;
-  }, 0);
+  const descontoProdutos = useMemo (() => {
+    return localCartItems.reduce((acc, item) => {
+      return item.desconto
+        ? acc + item.price * (item.desconto / 100) * item.quantity
+        : acc;
+    }, 0);
+  }, [localCartItems]);
+  
 
   // Desconto do cupom aplica sobre subtotal menos desconto dos produtos
   const descontoCupom = (subtotal - descontoProdutos) * (couponDiscount / 100);
-
-  // Total desconto (produtos + cupom)
   const totalDesconto = descontoProdutos + descontoCupom;
-
-  // Total final = subtotal - descontos + frete (se calculado)
   const total = subtotal - totalDesconto + (freteCalculado ? frete : 0);
 
   useEffect(() => {
@@ -80,33 +71,42 @@ export default function CartPage({ cartItems, onUpdateCart }) {
     if (newQuantity < 1) return;
     updated[index].quantity = newQuantity;
     setLocalCartItems(updated);
+    onUpdateCart?.(updated);
   }
 
   function handleRemove(index) {
     const updated = [...localCartItems];
     updated.splice(index, 1);
     setLocalCartItems(updated);
+    onUpdateCart?.(updated);
   }
 
+  const [mensagemErro, setMensagemErro] = useState("");
+
   async function calcularFrete() {
-    const normalizedCep = cep.replace(/\D/g, "");
-    if (normalizedCep.length !== 8) return alert("CEP inválido");
+    const normalizedCep = cep.replace(/\D.-/g, "");
+      if (normalizedCep.length !== 8) {
+        setMensagemErro("CEP inválido");
+      return;
+    }
     try {
-      const response = await fetch(`https://viacep.com.br/ws/${normalizedCep}/json/`);
+       response = await fetch(`https://viacep.com.br/ws/${normalizedCep}/json/`);
       const data = await response.json();
-      if (data.erro) return alert("CEP não encontrado");
+      if (data.erro) {
+        setMensagemErro("CEP não encontrado");
+        return;
+      }
       setFrete(20.0);
       setFreteCalculado(true);
+      setMensagemErro(""); 
     } catch {
-      alert("Erro ao buscar o CEP.");
+      setMensagemErro("Erro ao buscar o CEP.");
     }
   }
 
   // Função para validar e aplicar cupom
   function aplicarCupom() {
     const code = couponCode.trim().toUpperCase();
-
-    // Cupons válidos e respectivos descontos
     const cuponsValidos = {
       "DESCONTO10": 10,
       "PROMO20": 20,
@@ -115,11 +115,11 @@ export default function CartPage({ cartItems, onUpdateCart }) {
     if (cuponsValidos[code]) {
       setCouponDiscount(cuponsValidos[code]);
       setCouponApplied(true);
-      alert(`Cupom aplicado! Você ganhou ${cuponsValidos[code]}% de desconto.`);
+      setMensagemErro(`Cupom aplicado! Você ganhou ${cuponsValidos[code]}% de desconto.`);
     } else {
       setCouponDiscount(0);
       setCouponApplied(false);
-      alert("Cupom inválido.");
+      setMensagemErro("Cupom inválido.");
     }
   }
 
@@ -173,7 +173,7 @@ const produtosRelacionados = useMemo(() => {
               : item.price;
 
             return (
-              <div key={item.id} className="grid grid-cols-12 items-center py-4 border-b gap-y-4">
+              <div key={item.id} className="grid grid-col-12 md:grid-cols-12  items-center border-b gap-y-4">
                 <div className="col-span-5 flex gap-4 box-image">
                   <img
                     src={item.image}
@@ -224,7 +224,7 @@ const produtosRelacionados = useMemo(() => {
                   )}
                 </div>
 
-                <div className="col-span-3 text-right font-medium text-sm">
+                <div className="col-span-3 flex item-center text-right font-medium text-sm">
                   R$ {(precoComDesconto * item.quantity).toFixed(2)}
                 </div>
               </div>
@@ -255,6 +255,11 @@ const produtosRelacionados = useMemo(() => {
                   OK
                 </button>
               </div>
+              {mensagemErro && (
+                <p className="text-red-600 text-xs mt-1">
+                  {mensagemErro}
+                </p>
+            )}
             </div>
             <div>
               <label className="block font-medium text-sm mb-1">Calcular frete</label>
@@ -268,6 +273,7 @@ const produtosRelacionados = useMemo(() => {
                     setCep(e.target.value);
                     setFreteCalculado(false);
                     setFrete(0);
+                    setMensagemErro("");
                   }}
                   className="flex-1 border border-gray-300 px-3 py-2 rounded-l text-sm"
                 />
@@ -278,6 +284,11 @@ const produtosRelacionados = useMemo(() => {
                   OK
                 </button>
               </div>
+              {mensagemErro && (
+                <p className="text-red-600 text-xs mt-1">
+                  {mensagemErro}
+                </p>
+              )}
             </div>
           </div>
         </div>

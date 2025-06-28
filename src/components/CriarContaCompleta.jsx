@@ -19,6 +19,7 @@ export default function CriarContaCompleta() {
     const cpfRegex = /^\d{11}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const celularRegex = /^\d{10,11}$/;
+    
 
     if (!formData.nome?.trim()) newErrors.nome = "Nome é obrigatório";
     if (!cpfRegex.test(formData.cpf || "")) newErrors.cpf = "CPF inválido (11 dígitos)";
@@ -63,18 +64,25 @@ export default function CriarContaCompleta() {
     }
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!validate()) return;
+  const [mensagemSucess, setMensagemSucess] = useState("");
 
-    const users = JSON.parse(localStorage.getItem("usuarios")) || [];
-    users.push(formData);
-    localStorage.setItem("usuarios", JSON.stringify(users));
-    localStorage.removeItem("emailTemp");
+    function handleSubmit(e) {
+        e.preventDefault();
+        if (!validate()) return;
 
-    alert("Conta criada com sucesso!");
-    navigate("/");
-  }
+        const users = JSON.parse(localStorage.getItem("usuarios")) || [];
+        users.push(formData);
+        localStorage.setItem("usuarios", JSON.stringify(users));
+        localStorage.removeItem("emailTemp");
+
+        setMensagemSucess("Conta Criada com Sucesso");
+
+        setTimeout(() => {
+            setMensagemSucess("");
+            navigate("/");
+        }, 3000); 
+    }
+
 
   return (
     <main className="criarconta-container bg-[#f9f6ff] min-h-screen flex flex-col">
@@ -167,6 +175,11 @@ export default function CriarContaCompleta() {
                             </div>
                         </div>
                         </fieldset>
+                          {mensagemSucess && (
+                                <p className="text-red-600 text-xs mt-1">
+                                    {mensagemSucess}
+                                </p>
+                            )}
                         {/* Checkbox */}
                         <div className="bg-[#f9f6ff]">
                             <label className="flex items-center gap-2 text-sm text-gray-600 checkbox">
@@ -174,9 +187,14 @@ export default function CriarContaCompleta() {
                                 Quero receber por email ofertas e novidades da loja.
                             </label>
 
-                            <button type="submit" className="w-full bg-[#cf2284] text-white py-2 rounded-md hover:bg-[#b61e73] hover:cursor-pointer transition">
+                            <button type="submit" 
+                            onChange={(e) => { 
+                                setMensagemSucess("") 
+                            }}
+                            className="w-full bg-[#cf2284] text-white py-2 rounded-md hover:bg-[#b61e73] hover:cursor-pointer transition">
                                 Criar Conta
                             </button>
+                           
                         </div>
                         
                     </form>

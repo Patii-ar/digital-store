@@ -20,21 +20,19 @@ export default function CriarContaSimples() {
   }
 
   return (
-    <main className="criarconta-container flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-[#e8e3ff] to-[#f4f0ff]">
-      <div className="criarconta-wrapper max-w-6xl w-full flex flex-col md:flex-row items-center justify-center">
-    
-        {/* Formulário */}
-        <section className="section-form bg-white rounded-2xl shadow-md w-full max-w-md text-center md:text-left">
-          <h2 className="text-criarconta text-3xl font-semibold text-gray-900">Crie sua conta</h2>
-          <p className="text-possuiconta text-sm text-gray-600">
+    <div className="flex flex-col lg:flex-row h-fit justify-center items-center gap-20 xl:gap-30 bg-(--secondary)">
+      <div className="bg-(--white) flex flex-col gap-8 forms rounded-sm w-fit">
+        <div className='flex flex-col gap-4'>
+          <h2 className='font-bold text-3xl'>Crie sua conta</h2>
+          <p className='text-(--darkgray2) text-sm'>
             Já possui uma conta?{" "}
             <Link to="/login" className="text-[#cf2284] underline">Entre aqui</Link>.
           </p>
-
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="email" className="text-email block text-sm font-medium text-gray-700">
-              Email *
-            </label>
+        </div>  
+        <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+          <label htmlFor="email" className="text-email block text-sm font-medium text-gray-700">
+            Email *
+          </label>
             <input
               id="email"
               type="email"
@@ -57,14 +55,9 @@ export default function CriarContaSimples() {
             <img src={gmail} alt="Google" className="w-6 h-6" />
             <img src={facebook} alt="Facebook" className="w-6 h-6" />
           </div>
-        </section>
-
-        {/* Imagem */}
-        <div className="imagem-margem hidden md:block">
-          <img src={tenisJordan} alt="Tênis" className="w-[720px] object-contain" />
-        </div>
       </div>
-    </main>
+      <img src={tenisJordan} alt="Tênis"className='w-[25rem] h-[30rem] xl:w-[45rem] xl:h-[55rem] hidden lg:inline image' />
+    </div>
 
   );
 }

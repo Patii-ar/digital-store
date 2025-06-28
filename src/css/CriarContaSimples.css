@@ -1,25 +1,13 @@
+@import url("Index.css");
+@import 'tailwindcss';
+
+
+
 .criarconta-container {
   padding: 1.5rem 1rem;
   padding-bottom: 4rem;
 }
 
-.criarconta-wrapper {
-  gap: 3rem;
-}
-
-.section-form {
-  padding: 2rem 1.25rem;
-  max-width: 100%;
-}
-
-/* Margens e espaçamentos */
-.text-criarconta {
-  margin-bottom: 0.5rem;
-}
-
-.text-possuiconta {
-  margin-bottom: 1.5rem;
-}
 
 .box-email {
   padding: 0.85rem 1rem;
@@ -30,54 +18,14 @@
   padding: 1rem;
 }
 
-.text-login {
-  margin: 1.5rem 0 0.5rem;
-}
 
 .social-login {
   margin-top: 0.5rem;
   gap: 1rem;
 }
 
-.imagem-margem {
-  padding-left: 2rem;
+.button {
+    margin-top: 2.2rem;
+    padding: 0.5rem;
 }
 
-@media (min-width: 768px) {
-  .criarconta-container {
-    padding: 3rem 4rem;
-    padding-bottom: 2rem;
-  }
-
-  .criarconta-wrapper {
-    gap: 6rem;
-  }
-
-  .imagem-margem {
-    margin-left: 2rem;
-  }
-
-  .section-form {
-    text-align: left;
-    padding: 2rem 1.25rem;
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-@media (min-width: 768px) {
-  .section-form {
-    max-width: 400px;
-  }
-}
-
-@media (max-width: 767px) {
-  .imagem-margem {
-    display: none;
-  }
-
-  .criarconta-wrapper {
-    flex-direction: column;
-    gap: 2rem;
-  }
-}
