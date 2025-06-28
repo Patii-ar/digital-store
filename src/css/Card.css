@@ -1,0 +1,22 @@
+@import url("Index.css");
+@import 'tailwindcss';
+
+
+.products-grid {
+  gap: 1rem;            
+  padding-left: 1rem;     
+  padding-right: 1rem;   
+}
+
+@media (min-width: 1024px) {
+  .products-grid {
+    gap: 2rem;
+    padding-left: 5rem;     
+    padding-right: 5rem;   
+  }
+}
+
+.discount{
+    padding: 0.1rem 0.8rem;
+    margin: 1.3rem;
+}

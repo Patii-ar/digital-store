@@ -1,0 +1,27 @@
+@import url("Index.css");
+@import 'tailwindcss';
+
+.principal{
+    margin: 4.5rem 4.5rem 0 4.5rem;
+    padding-bottom: 2rem;
+}
+
+h6{
+    padding: 1.8rem;
+}
+
+ul{
+    padding: 1.8rem 0;
+    li{
+        padding: 0.8rem 0;
+    }
+}
+
+.contato h5{
+    padding-bottom: 1.8rem;
+}
+
+.contato p{
+    padding-bottom: 0.8rem;
+}
+

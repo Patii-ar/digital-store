@@ -1,0 +1,6 @@
+@import url("Index.css");
+@import 'tailwindcss';
+
+.carousel {
+    margin-bottom: 40px;
+}

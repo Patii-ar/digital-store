@@ -1,0 +1,6 @@
+@import url("Index.css");
+@import 'tailwindcss';
+
+.main{
+    padding: 0 0.8rem;
+}

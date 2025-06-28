@@ -1,0 +1,59 @@
+
+.sidebar-container {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.sidebar-container h2 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.sidebar-section {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-section h3 {
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1f2937;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.sidebar-checkbox:hover {
+  color: #db2777; 
+}
+
+.sidebar-checkbox input {
+  accent-color: #db2777;
+  width: 1rem;
+  height: 1rem;
+}
+
+.sidebar-clear {
+  font-size: 1rem;
+  font-weight: semi-bold;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px #e9edf5;
+  padding-bottom: 1rem;
+  
+}
+
+.sidebar-clear:hover {
+  color: #db2777;
+}

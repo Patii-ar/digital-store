@@ -1,0 +1,36 @@
+.cart-modal {
+  position: absolute;
+  top: 64px;
+  right: 24px;
+  background: white;
+  padding: 1.5rem; 
+  border-radius: 12px;
+  width: 320px;
+  z-index: 50;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.cart-title {
+  margin-bottom: 1rem;
+}
+
+.cart-items {
+  margin-top: 1rem;
+}
+
+.cart-item {
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.cart-total {
+  margin-top: 1rem;
+}
+
+.cart-actions {
+  margin-top: 1rem;
+}
+
+.cart-button {
+  padding: 0.25rem 0.75rem;
+}

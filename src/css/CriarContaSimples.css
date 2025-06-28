@@ -1,0 +1,31 @@
+@import url("Index.css");
+@import 'tailwindcss';
+
+
+
+.criarconta-container {
+  padding: 1.5rem 1rem;
+  padding-bottom: 4rem;
+}
+
+
+.box-email {
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.box-email-container {
+  padding: 1rem;
+}
+
+
+.social-login {
+  margin-top: 0.5rem;
+  gap: 1rem;
+}
+
+.button {
+    margin-top: 2.2rem;
+    padding: 0.5rem;
+}
+
