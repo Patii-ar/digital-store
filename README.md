@@ -74,30 +74,46 @@ A navegação é feita por meio de links no menu ou por redirecionamentos após 
 
 5. **Instruções de Navegação**
    *Página de LOGIN:*
-     Login: teste
-     senha: 123456
+
+   Login: teste
+   
+   Senha: 123456
 
    *Carrrinho*
+   
      adicionar Cupom: DESCONTO10 e PROMO20
          
 
 🗂️ ***Estrutura de Pastas***
 
   digital-store/
+  
   ├── public/
+  
   ├── src/
+  
   │   ├── components/
+  
   │   ├── pages/
+  
   │   ├── css/
+  
   │   ├── hooks/
+  
   │   └── App.jsx
+  
   ├── .gitignore
+  
   ├── package.json
+  
   └── README.md
 
 👥 Projeto realizado por: 
-    @sudobrunowoodo
-    @Patii-ar
+
+   @sudobrunowoodo 
+   
+   @Patii-ar
+
 
     Feito com muito empenho, dedicação e vontade de aprender. 
     esperamos que vejam esse projeto com carinho 🤝
