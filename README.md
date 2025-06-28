@@ -115,9 +115,9 @@ A navegação é feita por meio de links no menu ou por redirecionamentos após 
 
 👥 Projeto realizado por: 
 
-   @sudobrunowoodo 
+Bruno de Oliveira - @sudobrunowoodo 
    
-   @Patii-ar
+ Patricia Araujo - @Patii-ar
 
 
     Feito com muito empenho, dedicação e vontade de aprender. 
