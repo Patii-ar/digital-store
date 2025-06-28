@@ -1,12 +1,105 @@
-# React + Vite
+# 🛍️ Digital Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Digital Store** é um projeto de e-commerce desenvolvido com React, com foco em responsividade, experiência do usuário e funcionalidades essenciais para uma loja online moderna.
 
-Currently, two official plugins are available:
+## 🔗 Deploy
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Acesse a aplicação em produção:  
+👉 [https://sudobrunowoodo.github.io/digital-store/](https://sudobrunowoodo.github.io/digital-store/)
 
-## Expanding the ESLint configuration
+> ✅ O projeto está hospedado via GitHub Pages.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Funcionalidades
+
+- Cadastro e login de usuários
+- Validação de formulários
+- Preenchimento automático de endereço via CEP
+- Lista de produtos
+- Página de detalhes de produto
+- Carrinho de compras com atualização de quantidade
+- Cálculo automático de frete por CEP
+- Cupom de desconto
+- Responsividade mobile
+- Produtos relacionados no carrinho
+- Footer estilizado
+
+## 🧭 Navegação entre Páginas
+
+A navegação entre páginas foi implementada com `React Router DOM`. Veja abaixo as principais rotas disponíveis:
+
+| Página                    | Caminho                          | Acesso                                     
+|---------------------------|----------------------------------|--------------------------------------------
+| Página inicial            | `/`                              | Lista de produtos                          
+| Login                     | `/login`                         | Tela de autenticação                       
+| Criar Conta (etapa 1)     | `/criarcontasimples`             | Cadastro de email e caminho para cadastro                  
+| Criar Conta Completa      | `/criarcontacompleta`            | Cadastro de dados pessoais e endereço 
+| Produto                   | `/productpage`                   | Filtro, classificação de relevancia, preço e avaliação
+| Produto (detalhes)        | `/produto/:id`                   | Detalhes do produto selecionado e produtos relacionados          
+| Carrinho de Compras       | `/carrinho`                      | Itens adicionados, cálculo de frete, cupom de desconto e produtos relacionados       
+| Finalização de compra     | `/checkout`                      | Detalhes e finalização de compra, dados para entrega e informações de pagamento  
+| Compra Finalizada         | `/confirmation`                  | Compra Finalizada com sucesso e impressão de comprovante
+| Páginas de ERRO 404       | `/categorias` `/meus pedidos`    | Páginas com Erro 404 - NOT FOUND 
+
+
+A navegação é feita por meio de links no menu ou por redirecionamentos após ações (ex: login bem-sucedido ou cadastro completo).
+
+## 🧑‍💻 Tecnologias Utilizadas
+
+- **React.jsx**
+- **React Router DOM**
+- **useState / useEffect / useMimo**
+- **CSS Modules + Tailwind CSS**
+- **API ViaCEP** (consulta de endereço por CEP)
+- **LocalStorage** (para persistência de dados)
+- **JavaScript**
+- **HTML5 / CSS3**
+
+## 🚀 Como Rodar Localmente
+
+1. **Clone o repositório:**
+   `bash`
+   `git clone https://github.com/sudobrunowoodo/digital-store.git
+   cd digital-store`
+
+2. **Instale as dependências:**
+  `bash`
+  `npm install`
+
+3. **Inicie o projeto:**
+  `bash`
+  `npm run dev`
+
+4. **Acesse no navegador:**
+  `http://localhost:5173/`
+
+5. **Instruções de Navegação**
+   *Página de LOGIN:*
+     Login: teste
+     senha: 123456
+
+   *Carrrinho*
+     adicionar Cupom: DESCONTO10 e PROMO20
+         
+
+🗂️ ***Estrutura de Pastas***
+
+  digital-store/
+  ├── public/
+  ├── src/
+  │   ├── components/
+  │   ├── pages/
+  │   ├── css/
+  │   ├── hooks/
+  │   └── App.jsx
+  ├── .gitignore
+  ├── package.json
+  └── README.md
+
+👥 Projeto realizado por: 
+    @sudobrunowoodo
+    @Patii-ar
+
+    Feito com muito empenho, dedicação e vontade de aprender. 
+    esperamos que vejam esse projeto com carinho 🤝
+
+💡 Projeto educacional com foco em práticas modernas de desenvolvimento front-end.
