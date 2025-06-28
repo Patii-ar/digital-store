@@ -58,35 +58,35 @@ A navegação é feita por meio de links no menu ou por redirecionamentos após 
 
 1. **Clone o repositório:**
    
-   `bash`
-   `git clone https://github.com/sudobrunowoodo/digital-store.git
-   cd digital-store`
+      `bash`
+      `git clone https://github.com/sudobrunowoodo/digital-store.git
+      cd digital-store`
 
 2. **Instale as dependências:**
    
-  `bash`
-  `npm install`
+     `bash`
+     `npm install`
 
 3. **Inicie o projeto:**
    
-  `bash`
-  `npm run dev`
+     `bash`
+     `npm run dev`
 
 4. **Acesse no navegador:**
 
-   `http://localhost:5173/`
+      `http://localhost:5173/`
 
 7. **Instruções de Navegação**
    
-   ***Página de LOGIN:***
+      ***Página de LOGIN:***
 
-   Login: teste
+         Login: teste
    
-   Senha: 123456
+         Senha: 123456
 
-   ***Carrrinho***
+      ***Carrrinho:***
    
-     adicionar Cupom: DESCONTO10 e PROMO20
+        adicionar Cupom: DESCONTO10 e PROMO20
          
 
 🗂️ ***Estrutura de Pastas***
@@ -103,7 +103,7 @@ A navegação é feita por meio de links no menu ou por redirecionamentos após 
   
   │   ├── css/
   
-  │   ├── hooks/
+  │   ├── routes.jsx/
   
   │   └── App.jsx
   
